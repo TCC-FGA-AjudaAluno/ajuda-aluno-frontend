@@ -22,6 +22,13 @@
    font-size: 1.125rem; /* 18px */
 }
 
-.header a:hover {
-   color: var(--red);
+.header button  {
+   text-decoration: none;
+   color: var(--white);
+   padding-right: 1.5rem;
+   font-size: 1.125rem; /* 18px */
+   background-color:  var(--primary);
+   border: none;
+   cursor:pointer;
 }
+
