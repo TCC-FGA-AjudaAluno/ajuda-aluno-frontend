@@ -72,6 +72,7 @@ export const Button = styled.button`
    border: 1px solid  #0251a1;
    background-color:  #0251a1;
    color: #ffffff;
+   cursor: pointer;
    font-size: 12px;
    font-weight: bold;
    padding: 12px 45px;
