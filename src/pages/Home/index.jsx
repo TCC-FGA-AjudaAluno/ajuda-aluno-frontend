@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-
+import { Link } from "react-router-dom"
+ 
 import * as Components from '../../components/Overlay/Components';
 import Overlay from "../../components/Overlay/index";
 
@@ -17,7 +18,7 @@ function Home() {
    const [signIn, toggle] = React.useState(true);
 
    return (
-   <div className="App">
+      <div className="App">
       <>
          <Header />
          <section className='container'>
@@ -53,7 +54,9 @@ function Home() {
                      <Components.Input type='email' placeholder='Email' />
                      <Components.Input type='Senha' placeholder='Senha' />
                      <Components.Anchor href='#'>Esqueceu sua senha?</Components.Anchor>
-                     <Components.Button>Sigin In</Components.Button>
+                     <Link to="/dashboard">
+                        <Components.Button>Sigin In</Components.Button>
+                     </Link>
                   </Components.Form>
                </Components.SignInContainer>
                <Components.OverlayContainer signinIn={signIn}>

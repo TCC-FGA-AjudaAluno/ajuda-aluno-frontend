@@ -6,7 +6,6 @@ function Header() {
          <span>Ajuda Aluno</span>
          <nav>
             <a href=''>Sobre</a>
-            <a href=''>Contatos</a>
          </nav>
       </header>
    )
