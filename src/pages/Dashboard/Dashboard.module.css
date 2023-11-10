@@ -7,7 +7,11 @@
 }
 
 * h3 {
-   padding-left: 20px;
+   margin: 0px;
+   padding: 20px 0px 0px 18px;
+   font-size: 20px;
+   width: 288px;
+   height: 43px;
 }
 
 .square {
@@ -19,7 +23,19 @@
 }
 
 .columnContent {
+   display: inline-block;
    margin-top: 1px;
    width: calc(100% / 3);
    border-style: inset;
+   overflow: auto;
+}
+
+.news_content {
+   max-width: calc(100% / 3);
+}
+
+.selectSemester {
+   width: 170px;
+   height: 21px;
+   margin-left: 350px;
 }
