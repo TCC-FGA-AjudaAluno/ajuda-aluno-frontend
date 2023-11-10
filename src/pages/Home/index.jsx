@@ -6,6 +6,9 @@ import { Link } from "react-router-dom"
  
 import * as Components from '../../components/Overlay/Components';
 import Overlay from "../../components/Overlay/index";
+import Container from "../../components/Container";
+import styles from "./Home.module.css"
+
 
 
 function Home() {
@@ -21,20 +24,22 @@ function Home() {
       <div className="App">
       <>
          <Header />
-         <section className='container'>
-            <div className='apresentacao'>
-               <p>
-                  Bem vindo ao <br />
-                  <span>Ajuda Aluno</span> <br />
-               </p>
-               <button className='btn btn-blue' onClick={toggleOverlay}>
-                  Entrar
-               </button>
-            </div>
-            <figure>
-               <img className='img-home' src='/student.svg' alt='Home image' />
-            </figure>
-         </section>
+         <Container>
+            <section className={styles.home}>
+               <div className={styles.apresentacao}>
+                  <p>
+                     Bem vindo ao <br />
+                     <span>Ajuda Aluno</span> <br />
+                  </p>
+                  <button className={`${styles.btn} ${styles.btn_blue}`} onClick={toggleOverlay}>
+                     Entrar
+                  </button>
+               </div>
+               <figure>
+                  <img className={styles.img_home} src='/student.svg' alt='Home image' />
+               </figure>
+            </section>
+         </Container>
          <Footer />
       
          <Overlay isOpen={isOpen} onClose={toggleOverlay}>
@@ -54,7 +59,7 @@ function Home() {
                      <Components.Input type='email' placeholder='Email' />
                      <Components.Input type='Senha' placeholder='Senha' />
                      <Components.Anchor href='#'>Esqueceu sua senha?</Components.Anchor>
-                     <Link to="/dashboard">
+                     <Link to="/home">
                         <Components.Button>Sigin In</Components.Button>
                      </Link>
                   </Components.Form>

@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import Dashboard from "./pages/Dashboard"
+import Page404 from "./pages/Page404"
 
 
 function AppRoutes() {
@@ -9,7 +10,8 @@ function AppRoutes() {
       <BrowserRouter>
          <Routes>
             <Route path="/" element={ <Home />}></Route>
-            <Route path="/dashboard" element={ <Dashboard />}></Route>
+            <Route path="/home" element={ <Dashboard />}></Route>
+            <Route path="*" element={ <Page404 />}></Route>
          </Routes>
       </BrowserRouter>
    )

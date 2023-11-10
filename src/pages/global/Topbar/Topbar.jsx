@@ -9,9 +9,8 @@ function Topbar() {
    return (
       <div style={{border: "1px", boxShadow: "0px 4px 4px #000000"}}>
          <Box className={styles.topbar}>
-            {/* Search Bar */}
             <nav style={{marginLeft: "75px"}}>
-               <Link to="/dashboard" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Home</Link>
+               <Link to="/home" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Home</Link>
                <Link to="/materias" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Materias</Link>
                <Link to="/progresso" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Progresso</Link>
                <Link to="/progresso" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>FAQ</Link>
