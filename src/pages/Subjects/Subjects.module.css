@@ -1,0 +1,46 @@
+.container {
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   margin-top: 2px;
+}
+
+* h3 {
+   margin: 0px;
+   padding: 20px 0px 0px 18px;
+   font-size: 20px;
+   width: 288px;
+   height: 43px;
+}
+
+.square {
+   flex: 1 1 100%
+}
+
+.rect {
+   flex: 1 1 47%;
+}
+
+.columnContent {
+   display: inline-block;
+   margin-top: 1px;
+   width: calc(100% / 3);
+   border-style: inset;
+   overflow: auto;
+}
+
+.Filecontent {
+   max-width: calc(100% / 3);
+}
+
+.selectSemester {
+   width: 170px;
+   height: 21px;
+   margin-left: 350px;
+}
+
+.top {
+   padding-top: 1px;
+   padding-bottom: 1px;
+}
