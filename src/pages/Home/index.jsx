@@ -2,8 +2,13 @@ import React from "react";
 import { useState } from "react";
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import { Link } from "react-router-dom"
- 
+import { Link, useNavigate } from "react-router-dom"
+import { useFormik } from 'formik';
+import { registerValidation , usernameValidate  } from "../../helper/validate.js";
+import toast, { Toaster } from 'react-hot-toast';
+import { useAuthStore } from "../../store/store.js";
+import { registerUser , verifyPassword } from "../../helper/helper.js";
+
 import * as Components from '../../components/Overlay/Components';
 import Overlay from "../../components/Overlay/index";
 import Container from "../../components/Container";
@@ -13,7 +18,60 @@ import styles from "./Home.module.css"
 
 function Home() {
 
+   const navigate = useNavigate()
+   //const setUsername = useAuthStore(state => state.setUsername);
+
    const [isOpen, setIsOpen] = useState(false);
+
+   const formik = useFormik({
+      initialValues : {
+         email: 'doyol56239@cnogs.com',
+         username: 'example123',
+         password : 'admin@123'
+      },
+      validate : registerValidation,
+      validateOnBlur: false,
+      validateOnChange: false,
+      onSubmit : async values => {
+         let registerPromise = registerUser(values)
+         toast.promise(registerPromise, {
+           loading: 'Creating...',
+           success : <b>Register Successfully...!</b>,
+           error : <b>Could not Register.</b>
+         });
+   
+         registerPromise.then(function(){ navigate('/home')});   
+         }
+   })
+
+   const setUsername = useAuthStore(state => state.setUsername);
+   const formikUser = useFormik({
+      initialValues : {
+         username: 'example123',
+         password : 'admin@123'
+      },
+      validate : usernameValidate,
+      validateOnBlur: false,
+      validateOnChange: false,
+      onSubmit : async values => {
+      
+         setUsername(values.username)
+         let loginPromise = verifyPassword({ username : values.username , password : values.password })
+         toast.promise(loginPromise, {
+         loading: 'Checking...',
+         success : <b>Login Successfully...!</b>,
+         error : <b>Password Not Match!</b>
+         });
+
+         loginPromise.then(res => {
+            let { token } = res.data;
+            localStorage.setItem('token', token);
+            navigate('/home')
+          })
+
+         }
+   })
+
 
    const toggleOverlay = () => {
       setIsOpen(!isOpen);
@@ -25,6 +83,7 @@ function Home() {
       <>
          <Header />
          <Container>
+            <Toaster position="top-center" reverseOrder={false}></Toaster>
             <section className={styles.home}>
                <div className={styles.apresentacao}>
                   <p>
@@ -45,23 +104,21 @@ function Home() {
          <Overlay isOpen={isOpen} onClose={toggleOverlay}>
             <Components.Container>
                <Components.SignUpContainer signinIn={signIn}>
-                  <Components.Form>
+                  <Components.Form onSubmit={formik.handleSubmit}>
                      <Components.Title>Create Account</Components.Title>
-                     <Components.Input type='text' placeholder='Nome' />
-                     <Components.Input type='email' placeholder='Email' />
-                     <Components.Input type='Senha' placeholder='Senha' />
-                     <Components.Button>Sign Up</Components.Button>
+                     <Components.Input {...formik.getFieldProps('username')} type='text' placeholder='Nome' />
+                     <Components.Input {...formik.getFieldProps('email')} type='text' placeholder='Email' />
+                     <Components.Input {...formik.getFieldProps('password')} type='text' placeholder='Senha' />
+                     <Components.Button type='submit'>Sign Up</Components.Button>
                   </Components.Form>
                </Components.SignUpContainer>
                <Components.SignInContainer signinIn={signIn}>
-                  <Components.Form>
+                  <Components.Form onSubmit={formikUser.handleSubmit}>
                      <Components.Title>Sign in</Components.Title>
-                     <Components.Input type='email' placeholder='Email' />
-                     <Components.Input type='Senha' placeholder='Senha' />
+                     <Components.Input {...formikUser.getFieldProps('username')} type='text' placeholder='username' />
+                     <Components.Input {...formikUser.getFieldProps('password')} type='text' placeholder='Senha' />
                      <Components.Anchor href='#'>Esqueceu sua senha?</Components.Anchor>
-                     <Link to="/home">
-                        <Components.Button>Sigin In</Components.Button>
-                     </Link>
+                     <Components.Button  type='submit' >Sigin In</Components.Button>
                   </Components.Form>
                </Components.SignInContainer>
                <Components.OverlayContainer signinIn={signIn}>
