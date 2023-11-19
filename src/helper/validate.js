@@ -1,5 +1,5 @@
 import toast from 'react-hot-toast'
-import { authenticate } from './helper.js';
+import { authenticate , getEmail } from './helper.js';
 
 /** validate login page username */
 export async function usernameValidate(values){
@@ -13,6 +13,8 @@ export async function usernameValidate(values){
             errors.exist = toast.error('User does not exist...!')
         }
     }
+    passwordVerify(errors, values);
+
 
     return errors;
 }
@@ -21,6 +23,7 @@ export async function usernameValidate(values){
 /** validate register form */
 export async function registerValidation(values){
     const errors = usernameVerify({}, values);
+
     if(values.username){
         // check user exist or not
         const { status } = await authenticate(values.username);
@@ -29,8 +32,18 @@ export async function registerValidation(values){
             errors.exist = toast.error('Username already exist...!')
         }
     }
-    passwordVerify(errors, values);
+    
+    if(values.email){
+        // check user exist or not
+        const { status } = await getEmail(values.email);
+        
+        if(status == 200){
+            errors.exist = toast.error('Email already exist...!')
+        }
+    }
     emailVerify(errors, values);
+    passwordVerify(errors, values);
+    
 
     return errors;
 }

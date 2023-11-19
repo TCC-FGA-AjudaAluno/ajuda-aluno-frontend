@@ -11,6 +11,8 @@ import { registerUser , verifyPassword } from "../../helper/helper.js";
 
 import * as Components from '../../components/Overlay/Components';
 import Overlay from "../../components/Overlay/index";
+import OverlayRecovery from "../../components/OverlayRecovery/index";
+import * as ComponentsRecovery from "../../components/OverlayRecovery/Components";
 import Container from "../../components/Container";
 import styles from "./Home.module.css"
 
@@ -22,6 +24,8 @@ function Home() {
    //const setUsername = useAuthStore(state => state.setUsername);
 
    const [isOpen, setIsOpen] = useState(false);
+
+   const [isOpenReco, setIsOpenReco] = useState(false);
 
    const formik = useFormik({
       initialValues : {
@@ -56,6 +60,7 @@ function Home() {
       onSubmit : async values => {
       
          setUsername(values.username)
+
          let loginPromise = verifyPassword({ username : values.username , password : values.password })
          toast.promise(loginPromise, {
          loading: 'Checking...',
@@ -76,7 +81,12 @@ function Home() {
    const toggleOverlay = () => {
       setIsOpen(!isOpen);
    };
+
    const [signIn, toggle] = React.useState(true);
+
+   const toggleOverlayRecovery = () => {
+      setIsOpenReco(!isOpenReco);
+   };
 
    return (
       <div className="App">
@@ -112,15 +122,17 @@ function Home() {
                      <Components.Button type='submit'>Sign Up</Components.Button>
                   </Components.Form>
                </Components.SignUpContainer>
+
                <Components.SignInContainer signinIn={signIn}>
                   <Components.Form onSubmit={formikUser.handleSubmit}>
                      <Components.Title>Sign in</Components.Title>
                      <Components.Input {...formikUser.getFieldProps('username')} type='text' placeholder='username' />
                      <Components.Input {...formikUser.getFieldProps('password')} type='text' placeholder='Senha' />
-                     <Components.Anchor href='#'>Esqueceu sua senha?</Components.Anchor>
+                     <Components.Anchor onClick={toggleOverlayRecovery}  href='#'>Esqueceu sua senha?</Components.Anchor>
                      <Components.Button  type='submit' >Sigin In</Components.Button>
                   </Components.Form>
                </Components.SignInContainer>
+
                <Components.OverlayContainer signinIn={signIn}>
                   <Components.Overlay signinIn={signIn}>
                      <Components.LeftOverlayPanel signinIn={signIn}>
@@ -132,6 +144,7 @@ function Home() {
                            Sign In
                         </Components.GhostButton>
                      </Components.LeftOverlayPanel>
+                     
                      <Components.RightOverlayPanel signinIn={signIn}>
                         <Components.Title>Bem vindos</Components.Title>
                         <Components.Paragraph>
@@ -145,6 +158,26 @@ function Home() {
                </Components.OverlayContainer>
             </Components.Container>    
          </Overlay>
+
+         <OverlayRecovery isOpen={isOpenReco} onClose={toggleOverlayRecovery}>
+            <ComponentsRecovery.Container>
+
+
+               <ComponentsRecovery.SignInContainer signinIn={signIn}>
+                  <ComponentsRecovery.Form onSubmit={formikUser.handleSubmit}>
+                     <ComponentsRecovery.Title>Recuperar Senha</ComponentsRecovery.Title>
+                     <span className='py-4 text-xl w-2/3 text-center text-gray-500'>
+                Enter OTP to recover password.
+            </span>
+                     <ComponentsRecovery.Input {...formikUser.getFieldProps('username')} type='text' placeholder='username' />
+                     <ComponentsRecovery.Button  type='submit' >Recuperar</ComponentsRecovery.Button>
+                     <ComponentsRecovery.Anchor >Esqueceu sua senha?</ComponentsRecovery.Anchor>
+                  </ComponentsRecovery.Form>
+               </ComponentsRecovery.SignInContainer>
+
+             
+            </ComponentsRecovery.Container>    
+         </OverlayRecovery>
       </>
       </div>
    )

@@ -1,0 +1,20 @@
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background-attachment: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(192, 204, 207);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-attachment: gray;
+}
+
+::-webkit-scrollbar:horizontal{
+    height: 4px;
+}
