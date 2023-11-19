@@ -5,14 +5,16 @@ import Dashboard from "./pages/Dashboard"
 import Subjects from "./pages/Subjects"
 import Page404 from "./pages/Page404"
 
+/** auth middleware */
+import { AuthorizeUser, ProtectRoute } from './middleware/auth.js'
 
 function AppRoutes() {
    return (
       <BrowserRouter>
          <Routes>
             <Route path="/" element={ <Home />}></Route>
-            <Route path="/home" element={ <Dashboard />}></Route>
-            <Route path="/subject" element={ <Subjects />}></Route>
+            <Route path="/home" element={<AuthorizeUser> <Dashboard /> </AuthorizeUser>}> </Route>
+            <Route path="/subject" element={ <AuthorizeUser> <Subjects /> </AuthorizeUser>}></Route>
             <Route path="*" element={ <Page404 />}></Route>
          </Routes>
       </BrowserRouter>
