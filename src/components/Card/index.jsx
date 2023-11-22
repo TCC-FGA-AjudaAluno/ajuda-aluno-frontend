@@ -12,7 +12,7 @@ function Card(props) {
             </IconButton>
          </div>
          <div className={styles.card_description}>
-            <p style={{margin: "0px"}}>{props.description}</p>
+            <p style={{margin: "0px", minHeight: "95px"}}>{props.description}</p>
          </div>
          <div className={styles.outline}/>
       </div>
