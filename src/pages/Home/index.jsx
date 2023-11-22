@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import {useEffect, useState } from "react";
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { Link, useNavigate } from "react-router-dom"
@@ -7,7 +7,7 @@ import { useFormik } from 'formik';
 import { registerValidation , usernameValidate  } from "../../helper/validate.js";
 import toast, { Toaster } from 'react-hot-toast';
 import { useAuthStore } from "../../store/store.js";
-import { registerUser , verifyPassword } from "../../helper/helper.js";
+import { registerUser , verifyPassword ,generateOTP, verifyOTP } from "../../helper/helper.js";
 
 import * as Components from '../../components/Overlay/Components';
 import Overlay from "../../components/Overlay/index";
@@ -15,18 +15,54 @@ import OverlayRecovery from "../../components/OverlayRecovery/index";
 import * as ComponentsRecovery from "../../components/OverlayRecovery/Components";
 import Container from "../../components/Container";
 import styles from "./Home.module.css"
+import useFetch from '../../hooks/fetch.hook'
 
 
 
 function Home() {
-
+   const { username } = useAuthStore(state => state.auth);
+   const [OTP, setOTP] = useState();
    const navigate = useNavigate()
-   //const setUsername = useAuthStore(state => state.setUsername);
 
    const [isOpen, setIsOpen] = useState(false);
 
    const [isOpenReco, setIsOpenReco] = useState(false);
 
+
+    async function onSubmit(e){
+      e.preventDefault();
+      try {
+        let { status } = await verifyOTP({ username, code : OTP })
+        if(status === 201){
+          toast.success('Verify Successfully!')
+          
+          return navigate('/reset');
+        }  
+      } catch (error) {
+        return toast.error('Wront OTP! Check email again!')
+      }
+    }
+
+      // handler of send OTP
+  function resendOTP(){
+
+   let sentPromise = generateOTP(username);
+
+   toast.promise(sentPromise ,
+     {
+       loading: 'Sending...',
+       success: <b>OTP has been send to your email!</b>,
+       error: <b>Could not Send it!</b>,
+     }
+   );
+
+   sentPromise.then((OTP) => {
+     console.log(OTP)
+   });
+   
+ }
+
+/**Registration formik */
    const formik = useFormik({
       initialValues : {
          email: 'doyol56239@cnogs.com',
@@ -48,6 +84,7 @@ function Home() {
          }
    })
 
+/**Login formik */
    const setUsername = useAuthStore(state => state.setUsername);
    const formikUser = useFormik({
       initialValues : {
@@ -65,17 +102,20 @@ function Home() {
          toast.promise(loginPromise, {
          loading: 'Checking...',
          success : <b>Login Successfully...!</b>,
-         error : <b>Password Not Match!</b>
+         error : <b>Password Wrong!</b>
          });
 
          loginPromise.then(res => {
             let { token } = res.data;
             localStorage.setItem('token', token);
-            navigate('/home')
-          })
-
+            navigate('/home');
+         }).catch( error => {
+            error : <b>Password Not Match!</b>
+         }); 
+              
          }
    })
+
 
 
    const toggleOverlay = () => {
@@ -164,15 +204,16 @@ function Home() {
 
 
                <ComponentsRecovery.SignInContainer signinIn={signIn}>
-                  <ComponentsRecovery.Form onSubmit={formikUser.handleSubmit}>
+                  <ComponentsRecovery.Form onSubmit={onSubmit}>
                      <ComponentsRecovery.Title>Recuperar Senha</ComponentsRecovery.Title>
-                     <span className='py-4 text-xl w-2/3 text-center text-gray-500'>
-                Enter OTP to recover password.
-            </span>
-                     <ComponentsRecovery.Input {...formikUser.getFieldProps('username')} type='text' placeholder='username' />
+                     <ComponentsRecovery.Anchor >Enter OTP to recover password.</ComponentsRecovery.Anchor>
+                     <ComponentsRecovery.Anchor2 > Enter 6 digit OTP sent to your email address.</ComponentsRecovery.Anchor2>
+                     <ComponentsRecovery.Input onChange={(e) => setOTP(e.target.value) } type='text' placeholder='OTP' />
+
                      <ComponentsRecovery.Button  type='submit' >Recuperar</ComponentsRecovery.Button>
-                     <ComponentsRecovery.Anchor >Esqueceu sua senha?</ComponentsRecovery.Anchor>
                   </ComponentsRecovery.Form>
+                  <ComponentsRecovery.Button2 onClick={resendOTP} >Enviar código OTP</ComponentsRecovery.Button2>
+
                </ComponentsRecovery.SignInContainer>
 
              

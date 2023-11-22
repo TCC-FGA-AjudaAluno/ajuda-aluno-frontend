@@ -18,8 +18,9 @@ display: flex;
 align-items: center;
 justify-content: center;
 flex-direction: column;
-padding: 0 50px;
+padding: 0 -100px;
 height: 100%;
+margin: 0px 0px -10px 0px;
 text-align: center;
 `;
 
@@ -27,14 +28,40 @@ export const Anchor = styled.a`
 color: #333;
 font-size: 14px;
 text-decoration: none;
-margin: 15px 0;
+margin: 0px 0px 40px 0px;
 `;
 
+export const Anchor2 = styled.a`
+color: #333;
+font-size: 10px;
+text-decoration: none;
+margin: 100px 0px 0px 0px;
+`;
+
+export const Button2 = styled.a`
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+height: 0%;
+text-align: center;
+color: #333;
+font-size: 13px;
+text-decoration: none;
+margin: 0px 0px -50px 0px;
+cursor: pointer;
+&:hover {
+    color: rgb(341, 078, 078);
+    }
+`;
+
+
+
 export const Button = styled.button`
-   border-radius: 20px;
-   border: 1px solid  #0251a1;
+  border-radius: 10px;
+   border: 1px   #0251a1;
    background-color:  #0251a1;
-   margin-top: 25px;
+   margin: 10px 0px 0px 0px;
    color: #ffffff;
    cursor: pointer;
    font-size: 12px;
@@ -43,6 +70,8 @@ export const Button = styled.button`
    letter-spacing: 1px;
    text-transform: uppercase;
    transition: transform 80ms ease-in;
+   width: 80%;
+
    &:active{
        transform: scale(0.95);
    }
@@ -66,15 +95,16 @@ ${props => (props.signinIn !== true ? `transform: translateX(100%);` : null)}
 
 export const Title = styled.h1`
 font-weight: bold;
-margin: 100;
+margin: 0px 0px 10px 0px;
+
 `;
 
 export const Input = styled.input`
 background-color: #eee;
 border: none;
 padding: 12px 15px;
-margin: 8px 0;
-width: 100%;
+width: 80%;
+margin: 0px 0px 0px 0px;
 border-radius: 10px
 `;
 

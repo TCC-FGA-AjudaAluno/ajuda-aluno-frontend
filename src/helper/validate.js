@@ -19,6 +19,12 @@ export async function usernameValidate(values){
     return errors;
 }
 
+/** validate password */
+export async function passwordValidate(values){
+    const errors = passwordVerify({}, values);
+
+    return errors;
+}
 
 /** validate register form */
 export async function registerValidation(values){
@@ -59,6 +65,16 @@ function usernameVerify(error = {}, values){
     return error;
 }
 
+/** validate reset password */
+export async function resetPasswordValidation(values){
+    const errors = passwordVerify({}, values);
+
+    if(values.password !== values.confirm_pwd){
+        errors.exist = toast.error("Password not match...!");
+    }
+
+    return errors;
+}
 
 /** validate password */
 function passwordVerify(errors = {}, values){
