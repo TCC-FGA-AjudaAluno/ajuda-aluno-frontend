@@ -33,7 +33,7 @@ export async function getUser({ username }){
 /** get Email details */
 export async function getEmail( email ){
     try {
-        const { data : { msg }, status } = await axios.get(`/api/email/${email}`);
+        const { data :  status } = await axios.get(`/api/email/${email}`);
         return { status };
     } catch (error) {
         return { error : "Email doesn't Match...!"}
