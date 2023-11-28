@@ -42,9 +42,11 @@ export async function registerValidation(values){
     if(values.email){
         // check user exist or not
         const { status } = await getEmail(values.email);
-        
+        console.log(status);
         if(status == 200){
             errors.exist = toast.error('Email already exist...!')
+        } else {
+            errors.exist = toast.error('Something goes wrong')
         }
     }
     emailVerify(errors, values);
