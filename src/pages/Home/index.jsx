@@ -159,6 +159,8 @@ function Home() {
                      <Components.Input {...formik.getFieldProps('username')} type='text' placeholder='Nome' />
                      <Components.Input {...formik.getFieldProps('email')} type='text' placeholder='Email' />
                      <Components.Input {...formik.getFieldProps('password')} type='text' placeholder='Senha' />
+                     <Components.Input {...formik.getFieldProps('registrationNumber')} type='text' placeholder='Informe sua matrícula' />
+                     <Components.Input {...formik.getFieldProps('course')} type='text' placeholder='Informe seu curso' />
                      <Components.Button type='submit'>Sign Up</Components.Button>
                   </Components.Form>
                </Components.SignUpContainer>

@@ -8,7 +8,7 @@ export async function usernameValidate(values){
     if(values.username){
         // check user exist or not
         const { status } = await authenticate(values.username);
-        
+
         if(status !== 200){
             errors.exist = toast.error('User does not exist...!')
         }
@@ -32,28 +32,27 @@ export async function registerValidation(values){
 
     if(values.username){
         // check user exist or not
-        const { status } = await authenticate(values.username);
+        const response = await authenticate(values.username);
         
-        if(status == 200){
+        if(response.status == 200){
             errors.exist = toast.error('Username already exist...!')
         }
     }
     
     if(values.email){
         // check user exist or not
-        const { status } = await getEmail(values.email);
-        console.log(status);
-        if(status == 200){
+        const response = await getEmail(values.email);
+
+        if(response.status.msg){
             errors.exist = toast.error('Email already exist...!')
         } else {
-            errors.exist = toast.error('Something goes wrong')
+            emailVerify(errors, values);
+            passwordVerify(errors, values);
         }
-    }
-    emailVerify(errors, values);
-    passwordVerify(errors, values);
-    
 
-    return errors;
+        return errors;
+    }
+    
 }
 
 /** validate username */
