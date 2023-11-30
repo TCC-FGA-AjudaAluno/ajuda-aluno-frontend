@@ -4,6 +4,7 @@ import Home from "./pages/Home"
 import Dashboard from "./pages/Dashboard"
 import Reset from "./pages/Reset"
 import Subjects from "./pages/Subjects"
+import Leaderboards from "./pages/Leaderboards"
 import Page404 from "./pages/Page404"
 
 /** auth middleware */
@@ -18,6 +19,7 @@ function AppRoutes() {
             <Route path="/Reset" element={ <Reset /> }> </Route>
             <Route path="/subject" element={ <AuthorizeUser> <Subjects /> </AuthorizeUser>}></Route>
             <Route path="*" element={ <Page404 />}></Route>
+            <Route path="/leaderboards" element={ <Leaderboards/> }></Route>
          </Routes>
       </BrowserRouter>
    )

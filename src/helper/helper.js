@@ -30,6 +30,16 @@ export async function getUser({ username }){
     }
 }
 
+/** get all Users details */
+export async function getUsers(){
+    try {
+        const { data } = await axios.get('/api/users');
+        return { data };
+    } catch (error) {
+        return { error : "No user data available...!"}
+    }
+}
+
 /** get Email details */
 export async function getEmail( email ){
     try {
@@ -65,6 +75,7 @@ export async function verifyPassword({ username, password }){
     try {
         if(username){
             const { data } = await axios.post('/api/login', { username, password })
+            console.log('data login: ', data);
             return Promise.resolve({ data });
         }
     } catch (error) {
