@@ -23,7 +23,7 @@ function Dashboard() {
             </div>
          <section className={styles.container}>
             <div className={`${styles.columnContent} ${styles.rect}`}>
-               <h3>Fga Informações</h3>
+               <h3>Materiais</h3>
                <div className={styles.news_content}>
                   <News/>
                </div>
@@ -37,8 +37,8 @@ function Dashboard() {
                   <News/>
                </div>
             </div>
-            <div className={`${styles.columnContent} ${styles.square}`}>
-               <h3>Matérias</h3>
+            <div className={`${styles.columnContentPost} ${styles.square}`}>
+               <h3>Posts</h3>
                <FormControl sx={{ m: 1, minWidth: 120}}>
                   <Select
                      sx={{height: 30, borderRadius: 20}}
@@ -61,7 +61,7 @@ function Dashboard() {
                <Card name="Banco de Dados 1" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque.."/>
             </div>
             <div className={`${styles.columnContent} ${styles.square}`}>
-               <h3>Minhas tarefas</h3>
+               <h3>Monitoria</h3>
             </div>
          </section>
          <Footer />
