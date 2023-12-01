@@ -23,9 +23,19 @@
 }
 
 .columnContent {
+   
    display: inline-block;
    margin-top: 1px;
-   width: calc(100% / 3);
+   width: calc(100% / 5);
+   border-style: inset;
+   overflow: auto;
+}
+
+.columnContentPost {
+   
+   display: inline-block;
+   margin-top: 1px;
+   width: calc(60%);
    border-style: inset;
    overflow: auto;
 }
@@ -41,6 +51,5 @@
 }
 
 .top {
-   padding-top: 1px;
-   padding-bottom: 1px;
+   height: 150px;
 }
