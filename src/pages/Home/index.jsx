@@ -106,8 +106,9 @@ function Home() {
          });
 
          loginPromise.then(res => {
-            let { token } = res.data;
+            let { token, username } = res.data;
             localStorage.setItem('token', token);
+            localStorage.setItem('username', username);
             navigate('/home');
          }).catch( error => {
             error : <b>Password Not Match!</b>
@@ -131,7 +132,7 @@ function Home() {
    return (
       <div className="App">
       <>
-         <Header />
+         <Header path="/"/>
          <Container>
             <Toaster position="top-center" reverseOrder={false}></Toaster>
             <section className={styles.home}>
@@ -159,6 +160,8 @@ function Home() {
                      <Components.Input {...formik.getFieldProps('username')} type='text' placeholder='Nome' />
                      <Components.Input {...formik.getFieldProps('email')} type='text' placeholder='Email' />
                      <Components.Input {...formik.getFieldProps('password')} type='text' placeholder='Senha' />
+                     <Components.Input {...formik.getFieldProps('registrationNumber')} type='text' placeholder='Informe sua matrícula' />
+                     <Components.Input {...formik.getFieldProps('course')} type='text' placeholder='Informe seu curso' />
                      <Components.Button type='submit'>Sign Up</Components.Button>
                   </Components.Form>
                </Components.SignUpContainer>

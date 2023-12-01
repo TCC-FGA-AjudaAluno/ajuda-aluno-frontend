@@ -34,6 +34,7 @@ function Topbar() {
                <Link to="/progresso" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Progresso</Link>
                <Link to="/progresso" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>FAQ</Link>
                <Link to="/progresso" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Configurações</Link>
+               <Link to="/leaderboards" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Placar de pontuação</Link>
             </nav>
             <Box 
                className={styles.searchbar}

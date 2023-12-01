@@ -6,7 +6,7 @@ import styles from "./Page404.module.css"
 function Page404() {
    return (
       <>
-         <Header/>
+         <Header path=""/>
          <Container>
             <h2 className={styles.title2}>OOPS!</h2>
             <div className={styles.texts}>

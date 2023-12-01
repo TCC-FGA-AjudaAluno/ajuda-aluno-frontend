@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import styles from './Header.module.css'
 
-function Header() {
+function Header(props) {
    return (
       <header className={styles.header}> 
-         <Link to="/">
+         <Link to={`/${props.path}`}>
             <span>Ajuda Aluno</span>           
          </Link>
          <nav>
