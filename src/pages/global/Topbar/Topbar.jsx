@@ -18,6 +18,7 @@ function Topbar() {
       localStorage.removeItem('username');
       navigate('/');
    }
+   
    const [anchorEl, setAnchorEl] = React.useState(null);
    const [input, setInput] = React.useState("");
    const [results, setResults] = React.useState([]);

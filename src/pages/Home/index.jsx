@@ -132,7 +132,7 @@ function Home() {
    return (
       <div className="App">
       <>
-         <Header path="/"/>
+         <Header path=""/>
          <Container>
             <Toaster position="top-center" reverseOrder={false}></Toaster>
             <section className={styles.home}>
