@@ -1,0 +1,17 @@
+.resultsList {
+   display: flex;
+   flex-direction: column;
+   color: black;
+   position: absolute;
+   background-color: #eae7e7;
+   top: 60px;
+   width: 340px;
+   max-height: 140px;
+   overflow-y: scroll;
+   border-radius: 10px;
+   box-shadow: 0px 0px 0px #ddd;
+}
+
+.hide {
+   display: none;
+}
