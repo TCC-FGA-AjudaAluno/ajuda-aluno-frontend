@@ -30,6 +30,26 @@ export async function getUser({ username }){
     }
 }
 
+/** get Subject details */
+export async function getSubject({ name }){
+    try {
+        const { data } = await axios.get(`/api/Subject/${name}`);
+        return { data };
+    } catch (error) {
+        return { error : "Password doesn't Match...!"}
+    }
+}
+
+/** get Subject details */
+export async function getListubject({ name }){
+    try {
+        const { data } = await axios.get(`/api/subjects/`);
+        return { data };
+    } catch (error) {
+        return { error : "Password doesn't Match...!"}
+    }
+}
+
 /** get all Users details */
 export async function getUsers(){
     try {

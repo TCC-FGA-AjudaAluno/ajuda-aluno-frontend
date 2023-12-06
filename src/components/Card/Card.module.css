@@ -4,9 +4,10 @@
    background-color: #ffffff;
    margin-bottom: 1rem;
    margin-top: 64px;
-   margin-left: 66px;
-   width: 400px;
+   margin-left: calc(100% / 7);
+   width: 70%;
    height: 218px;
+
 }
 
 .span {

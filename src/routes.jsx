@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import Dashboard from "./pages/Dashboard"
 import Reset from "./pages/Reset"
-import Subjects from "./pages/Subjects"
+import Subject from "./pages/Subject"
+import Subjects from "./pages/ListSubjects"
 import Leaderboards from "./pages/Leaderboards"
 import Page404 from "./pages/Page404"
 
@@ -17,7 +18,8 @@ function AppRoutes() {
             <Route path="/" element={ <Home />}></Route>
             <Route path="/home" element={<AuthorizeUser> <Dashboard /> </AuthorizeUser>}> </Route>
             <Route path="/Reset" element={ <Reset /> }> </Route>
-            <Route path="/subject" element={ <AuthorizeUser> <Subjects /> </AuthorizeUser>}></Route>
+            <Route path="/subject" element={ <AuthorizeUser> <Subject /> </AuthorizeUser>}></Route>
+            <Route path="/subjects" element={ <AuthorizeUser> <Subjects /> </AuthorizeUser>}></Route>
             <Route path="*" element={ <Page404 />}></Route>
             <Route path="/leaderboards" element={ <Leaderboards/> }></Route>
          </Routes>
