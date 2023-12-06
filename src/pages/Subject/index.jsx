@@ -4,8 +4,11 @@ import Topbar from '../global/Topbar/Topbar'
 import Stats from '../../components/SubjectsComponents/Top'
 import News from '../../components/News'
 import Card from '../../components/Card'
-import { FormControl, MenuItem, Select } from '@mui/material'
 import React from 'react'
+
+import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda } from '@syncfusion/ej2-react-schedule';
+import { FormControl, MenuItem, Select } from '@mui/material'
+
 
 function Dashboard() {
 
@@ -62,6 +65,9 @@ function Dashboard() {
             </div>
             <div className={`${styles.columnContent} ${styles.square}`}>
                <h3>Monitoria</h3>
+               <ScheduleComponent> 
+                  <Inject services={[Day, Week, WorkWeek, Month, Agenda]}/>
+               </ScheduleComponent>
             </div>
          </section>
          <Footer />
