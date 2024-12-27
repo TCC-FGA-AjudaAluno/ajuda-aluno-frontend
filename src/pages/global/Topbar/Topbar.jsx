@@ -72,7 +72,7 @@ function Topbar() {
          <Box className={styles.topbar}>
             <nav style={{marginLeft: "75px"}}>
                <Link to="/home" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Home</Link>
-               <Link to="/materias" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Materias</Link>
+               <Link to="/subjects" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Materias</Link>
                <Link to="/progresso" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Progresso</Link>
                <Link to="/progresso" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>FAQ</Link>
                <Link to="/progresso" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Configurações</Link>

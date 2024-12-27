@@ -6,14 +6,33 @@ import News from '../../components/News'
 import Card from '../../components/Card'
 import { FormControl, MenuItem, Select } from '@mui/material'
 import React from 'react'
+import { getAllSubject } from "../../helper/helper"
+import {useEffect , useState } from "react";
 
-function Dashboard() {
+function  Dashboard() {
 
    const [age, setAge] = React.useState('');
+   const [inputData, setInputData] = React.useState([]);
 
+
+   const fetchSubject = () => {
+      getAllSubject().then(res => {
+
+         setInputData(res.data)
+      })
+   }
+
+   useEffect(() => {
+      fetchSubject()
+   }, []);
+
+
+         
    const handleChange = (event) => {
       setAge(event.target.value);
    };
+
+   
 
    return (
       <div>
@@ -38,10 +57,10 @@ function Dashboard() {
                      <MenuItem value={30}>1°/2022</MenuItem>
                   </Select>
                </FormControl>
-               <Card name="Fundamento de Arquitetura de Computadores" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque."/>
-               <Card name="Programação para Sistemas Distribuidos" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque."/>
-               <Card name="Projeto Integrador 1" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque.."/>
-               <Card name="Banco de Dados 1" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque.."/>
+               {
+               inputData.map((subject) =>  <Card name={subject.name}  description={subject.syllabus} /> )
+               }
+             
             </div>
 
          </section>

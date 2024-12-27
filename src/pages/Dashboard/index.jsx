@@ -6,6 +6,8 @@ import News from '../../components/News'
 import Card from '../../components/Card'
 import { FormControl, MenuItem, Select } from '@mui/material'
 import React from 'react'
+import { getSubjectByUser } from "../../helper/helper"
+
 
 function Dashboard() {
 
@@ -15,6 +17,16 @@ function Dashboard() {
       setAge(event.target.value);
    };
 
+   const fetchUser = () =>{
+      const username = localStorage.getItem('username')
+      const subjects = getSubjectByUser(username);
+
+      
+   }
+
+   React.useEffect(() => {
+      fetchUser();
+   }, []);
 
    return (
       <div>

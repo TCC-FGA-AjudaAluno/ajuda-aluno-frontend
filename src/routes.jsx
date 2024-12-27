@@ -1,6 +1,7 @@
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
+import AddSubjects from "./pages/AddSubjects"
 import Dashboard from "./pages/Dashboard"
 import Reset from "./pages/Reset"
 import Subject from "./pages/Subject"
@@ -17,6 +18,7 @@ function AppRoutes() {
          <Routes>
             <Route path="/" element={ <Home />}></Route>
             <Route path="/home" element={<AuthorizeUser> <Dashboard /> </AuthorizeUser>}> </Route>
+            <Route path="/AddSubjects" element={<AuthorizeUser> <Dashboard /> </AuthorizeUser>}> </Route>
             <Route path="/Reset" element={ <Reset /> }> </Route>
             <Route path="/subject" element={ <AuthorizeUser> <Subject /> </AuthorizeUser>}></Route>
             <Route path="/subjects" element={ <AuthorizeUser> <Subjects /> </AuthorizeUser>}></Route>
