@@ -6,7 +6,15 @@ import News from '../../components/News'
 import Card from '../../components/Card'
 import React from 'react'
 
-import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda } from '@syncfusion/ej2-react-schedule';
+import "../../../node_modules/@syncfusion/ej2-base/styles/material.css";
+import "../../../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+import "../../../node_modules/@syncfusion/ej2-calendars/styles/material.css";
+import "../../../node_modules/@syncfusion/ej2-dropdowns/styles/material.css";
+import "../../../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+import "../../../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+import "../../../node_modules/@syncfusion/ej2-popups/styles/material.css";
+import "../../../node_modules/@syncfusion/ej2-schedule/styles/material.css";
+import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, Inject, Resize, DragAndDrop } from '@syncfusion/ej2-react-schedule';
 import { FormControl, MenuItem, Select } from '@mui/material'
 
 
@@ -63,11 +71,28 @@ function Dashboard() {
                <Card name="Projeto Integrador 1" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque.."/>
                <Card name="Banco de Dados 1" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque.."/>
             </div>
-            <div className={`${styles.columnContent} ${styles.square}`}>
+            <div className={`${styles.columnContentMonitoria} ${styles.square}`}>
                <h3>Monitoria</h3>
-               <ScheduleComponent> 
-                  <Inject services={[Day, Week, WorkWeek, Month, Agenda]}/>
-               </ScheduleComponent>
+               <div className ={`${styles.schedule} `}> <ScheduleComponent width='100%' height='650px' currentView='Month' eventSettings={{ 
+                  fields: {
+                  id: 'id',
+                  subject: { name: 'subject' },
+                  isAllDay: { name: 'isallday' },
+                  location: { name: 'location' },
+                  description: { name: 'description' },
+                  startTime: { name: 'starttime' },
+                  endTime: { name: 'endtime' },
+                  startTimezone: { name: 'starttimezone' },
+                  endTimezone: { name: 'endtimezone' },
+                  recurrenceID: {name:'recurrenceid'},
+                  recurrenceRule:{name:'recurrencerule'},
+                  recurrenceException: {name:'recurrenceexception'},
+                  followingID:{name:'followingid'}
+                  } }}>
+              <Inject services={[Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop]}/>
+            </ScheduleComponent>
+            </div>
+              
             </div>
          </section>
          <Footer />

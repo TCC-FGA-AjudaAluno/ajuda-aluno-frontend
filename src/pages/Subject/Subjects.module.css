@@ -26,8 +26,17 @@
    
    display: inline-block;
    margin-top: 1px;
-   width: calc(100% / 5);
-   border-style: inset;
+   width: calc(20%);
+   border-top-style: groove;
+   overflow: auto;
+}
+
+.columnContentMonitoria {
+   
+   display: inline-block;
+   margin-top: 1px;
+   width: calc(25%);
+   border-top-style: groove;
    overflow: auto;
 }
 
@@ -35,9 +44,15 @@
    
    display: inline-block;
    margin-top: 1px;
-   width: calc(60%);
-   border-style: inset;
+   width: calc(55%);
+   border-style: groove;
    overflow: auto;
+}
+
+.schedule {
+   padding-top: 20px;
+   padding-left: 4px;
+   padding-right: 4px;
 }
 
 .Filecontent {

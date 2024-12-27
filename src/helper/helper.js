@@ -41,9 +41,20 @@ export async function getSubject({ name }){
 }
 
 /** get Subject details */
-export async function getListubject({ name }){
+export async function getAllSubject(){
     try {
-        const { data } = await axios.get(`/api/subjects/`);
+        var { data } = await axios.get(`/api/subjects`);
+        return { data } ;
+    } catch (error) {
+        return { error : "Subject doesn't Match...!"}
+    }
+}
+
+
+/** get Subject details */
+export async function getSubjectByUser(username){
+    try {
+        const { data } = await axios.get(`/api/subjects/${username}`);
         return { data };
     } catch (error) {
         return { error : "Password doesn't Match...!"}
@@ -152,5 +163,19 @@ export async function resetPassword({ username, password }){
         return Promise.resolve({ data, status})
     } catch (error) {
         return Promise.reject({ error })
+    }
+}
+
+
+/** update user profile function */
+export async function updateUserSubject(subject){
+    try {
+        
+        const username = await localStorage.getItem('username');
+        const status = await axios.put('/api/userSubject', { username , subject });
+
+        return Promise.resolve({ status })
+    } catch (error) {
+        return Promise.reject({ status : "Couldn't Update Profile...!"})
     }
 }
