@@ -44,6 +44,7 @@ export async function getSubject({ name }){
 export async function getAllSubject(){
     try {
         var { data } = await axios.get(`/api/subjects`);
+        console.log("data: ", data);
         return { data } ;
     } catch (error) {
         return { error : "Subject doesn't Match...!"}

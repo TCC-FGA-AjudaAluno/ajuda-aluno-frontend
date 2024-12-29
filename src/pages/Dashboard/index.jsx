@@ -5,13 +5,14 @@ import Stats from '../../components/Stats'
 import News from '../../components/News'
 import Card from '../../components/Card'
 import { FormControl, MenuItem, Select } from '@mui/material'
+import { fetchFgaNews } from "../../helper/scraper.js";
 import React from 'react'
 import { getSubjectByUser } from "../../helper/helper"
 
 
 function Dashboard() {
-
    const [age, setAge] = React.useState('');
+   const [fgaNews, setFgaNews] = React.useState([]);
 
    const handleChange = (event) => {
       setAge(event.target.value);
@@ -19,13 +20,18 @@ function Dashboard() {
 
    const fetchUser = () =>{
       const username = localStorage.getItem('username')
-      const subjects = getSubjectByUser(username);
-
-      
+      //const subjects = getSubjectByUser(username); // (404 sem rota no back)
    }
+
+   const getFgaNews = async () => {
+      const result = await fetchFgaNews();
+      setFgaNews(result); 
+   }
+   
 
    React.useEffect(() => {
       fetchUser();
+      getFgaNews();
    }, []);
 
    return (
@@ -36,18 +42,18 @@ function Dashboard() {
                <Stats/>
             </div>
             <div className={`${styles.columnContent} ${styles.rect}`}>
-               <h3>Fga Informações</h3>
+               <h3>Fga notícias</h3>
                <div className={styles.news_content}>
-                  <News/>
+                  { fgaNews.length > 0 ? <News href={fgaNews[0].href} title={fgaNews[0].title}/> : null }
                </div>
                <div className={styles.news_content}>
-                  <News/>
+                  { fgaNews.length > 0 ? <News href={fgaNews[1].href} title={fgaNews[1].title}/> : null }
                </div>
                <div className={styles.news_content}>
-                  <News/>
+                  { fgaNews.length > 0 ? <News href={fgaNews[2].href} title={fgaNews[2].title}/> : null }
                </div>
                <div className={styles.news_content}>
-                  <News/>
+                  { fgaNews.length > 0 ? <News href={fgaNews[3].href} title={fgaNews[3].title}/> : null }
                </div>
             </div>
             <div className={`${styles.columnContent} ${styles.square}`}>

@@ -1,12 +1,15 @@
 .news {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
    border: 1px solid #D1CACA;
    border-radius: 40px;
    background-color: #ffffff;
    margin-bottom: 1rem;
    margin-top: 64px;
    margin-left: 66px;
-   width: 212px;
-   height: 218px;
+   width: 400px;
+   height: 350px;
 }
 
 .span {
@@ -23,6 +26,8 @@
 .img_news {
    width: 175px;
    height: 112px;
+   margin-left: 4.5em;
+   align-self: center;
    border: 1px solid #D1CACA;
    border-radius: 40px;
 }
