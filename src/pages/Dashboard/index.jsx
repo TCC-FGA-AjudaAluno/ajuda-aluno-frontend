@@ -80,7 +80,7 @@ function Dashboard() {
                <Card name="Banco de Dados 1" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque.."/>
             </div>
             <div className={`${styles.columnContent} ${styles.square}`}>
-               <h3 style={{marginBottom: "110px"}}>Minhas tarefas</h3>
+               <h3 style={{marginBottom: "3.3em"}}>Minhas tarefas</h3>
                <Card name="Requisitos" description="É a tentativa de se expressar visualmente dados ou valores numéricos de maneira diferenciada."/>
             </div>
          </section>

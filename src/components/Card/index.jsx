@@ -22,11 +22,9 @@ function Card(props) {
    };
 
    return (
-      <div className={styles.card}>
-         <div className={styles.card_title}>
-            <p style={{margin: "0px 5px 0px 0px", cursor: "pointer"}}>{props.name}</p>
-
-            <IconButton onClick={handleClick} sx={{p: 0, marginLeft: 44}} type="button">
+      <div className={styles.card + ' ' + styles.box_down + ' ' + styles.blue}>
+         <div className={styles.card_btn}>
+            <IconButton onClick={handleClick} type="button">
             <MoreHorizIcon/>
             </IconButton>
 
@@ -39,14 +37,18 @@ function Card(props) {
                'aria-labelledby': 'basic-button',
             }}
             >
-            <MenuItem onClick={handleClose}>Adicionar matéria</MenuItem>
-            <MenuItem onClick={handleClose}>Descrição</MenuItem>
-            <MenuItem  onClick={handleClose}>Logout</MenuItem>
-            </Menu>      
+               <MenuItem onClick={handleClose}>Adicionar matéria</MenuItem>
+               <MenuItem onClick={handleClose}>Descrição</MenuItem>
+               <MenuItem  onClick={handleClose}>Logout</MenuItem>
+            </Menu> 
+         </div>  
+         <div className={styles.card_title}>
+            <p style={{margin: "0px 5px 0px 0px", cursor: "pointer"}}>{props.name}</p>   
          </div>
          <div className={styles.card_description}>
             <p style={{margin: "0px", minHeight: "95px"}}>{props.description}</p>
          </div>
+         <img src="https://assets.codepen.io/2301174/icon-calculator.svg" alt=""/>
          <div className={styles.outline}/>
       </div>
    )
