@@ -42,7 +42,7 @@ function Dashboard() {
                <Stats/>
             </div>
             <div className={`${styles.columnContent} ${styles.rect}`}>
-               <h3>Fga notícias</h3>
+               <h3 style={{marginBottom: "3.3em"}}>Fga notícias</h3>
                <div className={styles.news_content}>
                   { fgaNews.length > 0 ? <News href={fgaNews[0].href} title={fgaNews[0].title}/> : null }
                </div>
