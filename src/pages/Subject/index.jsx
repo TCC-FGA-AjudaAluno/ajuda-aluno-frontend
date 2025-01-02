@@ -21,17 +21,38 @@ import { FormControl, MenuItem, Select } from '@mui/material'
 function Dashboard() {
 
    const [age, setAge] = React.useState('');
+   const initialState = "Inscrever-se"; // checar se o usuário está inscrito ou não para setar valor inicial
+   const [buttonText, setButtonText] = React.useState(initialState);
 
    const handleChange = (event) => {
       setAge(event.target.value);
    };
 
+   const handleSubscribe = () => {
+      //rota de inscrição ou desinscrição (a depender do estado atual) em matéria para o back-end aqui;
+      // -> /subscribeSubject/:subjectId ou /unsubscribeSubject/:subjectId
+      setButtonText("Desinscrever"); // muda texto butao depois de se inscrever com sucesso
+   };
+
+   /*
+   useEffect(() => { 
+      if(buttonText !== initialState){
+        setTimeout(() => setButtonText(initialState), [1000])
+      }
+    }, [buttonText])
+   */
+
    return (
       <div>
          <Topbar/>
-         <div className={styles.top}>
-               <Stats/>
-            </div>
+         <div className={styles.subject_name}>
+            <p> Requisitos </p>
+         </div>
+         <div className={styles.subscribe_btn}>
+            <button type='button' className={`${styles.btn} ${styles.btn_blue}`} onClick={() => handleSubscribe()}>
+               {buttonText}
+            </button>
+         </div>
          <section className={styles.container}>
             <div className={`${styles.columnContent} ${styles.rect}`}>
                <h3>Materiais</h3>
