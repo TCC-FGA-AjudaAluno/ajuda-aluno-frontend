@@ -1,10 +1,11 @@
-import styles from './Subjects.module.css'
+import styles from './Subject.module.css'
 import Footer from "../../components/Footer"
 import Topbar from '../global/Topbar/Topbar'
 import Stats from '../../components/SubjectsComponents/Top'
 import News from '../../components/News'
 import Card from '../../components/Card'
 import React from 'react'
+import MaterialTable from '../../components/UploadFile'
 
 import "../../../node_modules/@syncfusion/ej2-base/styles/material.css";
 import "../../../node_modules/@syncfusion/ej2-buttons/styles/material.css";
@@ -16,6 +17,7 @@ import "../../../node_modules/@syncfusion/ej2-popups/styles/material.css";
 import "../../../node_modules/@syncfusion/ej2-schedule/styles/material.css";
 import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, Inject, Resize, DragAndDrop } from '@syncfusion/ej2-react-schedule';
 import { FormControl, MenuItem, Select } from '@mui/material'
+import Post from '../../components/Post'
 
 
 function Dashboard() {
@@ -56,18 +58,8 @@ function Dashboard() {
          <section className={styles.container}>
             <div className={`${styles.columnContent} ${styles.rect}`}>
                <h3>Materiais</h3>
-               <div className={styles.news_content}>
-                  <News/>
-               </div>
-               <div className={styles.news_content}>
-                  <News/>
-               </div>
-               <div className={styles.news_content}>
-                  <News/>
-               </div>
-               <div className={styles.news_content}>
-                  <News/>
-               </div>
+               <button className={`${styles.uploadBtn} ${styles.btn_blue}`}>Enviar</button>
+               <MaterialTable/>
             </div>
             <div className={`${styles.columnContentPost} ${styles.square}`}>
                <h3>Posts</h3>
@@ -87,10 +79,10 @@ function Dashboard() {
                      <MenuItem value={30}>1°/2022</MenuItem>
                   </Select>
                </FormControl>
-               <Card name="Fundamento de Arquitetura de Computadores" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque."/>
+               <Post name="Fundamento de Arquitetura de Computadores" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque.Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque..LOOOOOOOOOOOOOOOOOL"/>
                <Card name="Programação para Sistemas Distribuidos" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque."/>
                <Card name="Projeto Integrador 1" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque.."/>
-               <Card name="Banco de Dados 1" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque.."/>
+               <Card name="Banco de Dados 1" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque.."/>
             </div>
             <div className={`${styles.columnContentMonitoria} ${styles.square}`}>
                <h3>Monitoria</h3>

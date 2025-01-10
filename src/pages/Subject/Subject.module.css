@@ -23,7 +23,6 @@
 }
 
 .columnContent {
-   
    display: inline-block;
    margin-top: 1px;
    width: calc(20%);
@@ -41,7 +40,6 @@
 }
 
 .columnContentPost {
-   
    display: inline-block;
    margin-top: 1px;
    width: calc(55%);
@@ -107,4 +105,19 @@
 
 .btn_blue:hover {
    background-color: var(--secondary);
+}
+
+.material {
+   width: 250px;
+   height: 110px;
+}
+
+.uploadBtn {
+   width: 100px;
+   height: 25px;
+   margin-left: 16.5em;
+   font-weight: bold;
+   border: 0;
+   border-radius: 8px;
+   cursor: pointer;
 }
