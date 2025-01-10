@@ -2,10 +2,12 @@ import React from 'react';
 import BarChart from '../BarChart';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import { getUser } from '../../helper/helper';
+import { fetchSemesterDuration } from "../../helper/scraper.js";
 
 function Stats() {
 
    const [user, setData] = React.useState({});
+   const [semesterDays, setSemesterDays] = React.useState(0);
 
    const fetchUser = () =>{
       const username = localStorage.getItem('username')
@@ -14,8 +16,14 @@ function Stats() {
       });
    }
 
+   const fetchSemesterLenght = async () => {
+      const days = await fetchSemesterDuration();
+      setSemesterDays(days);
+   }
+
    React.useEffect(() => {
       fetchUser();
+      fetchSemesterLenght();
    }, []);
 
    return (
@@ -40,7 +48,7 @@ function Stats() {
          </div>
          <div style={{display: "flex", alignItems: "center", marginLeft: "28px"}}>
             <CalendarMonthOutlinedIcon style={{width: "38px", height: "35px", marginRight: "9px"}}/>
-            <span>90 dias <br/> Fim do semestre</span>
+            <span>{semesterDays} dias <br/> Fim do semestre</span>
             <span style={{marginLeft: "50px"}}>Pontos:</span>
             <span style={{marginLeft: "10px"}}>{user.points}</span>
          </div>

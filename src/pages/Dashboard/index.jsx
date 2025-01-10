@@ -28,7 +28,6 @@ function Dashboard() {
       setFgaNews(result); 
    }
    
-
    React.useEffect(() => {
       fetchUser();
       getFgaNews();

@@ -1,0 +1,96 @@
+:root {
+   --red: hsl(0, 78%, 62%);
+   --cyan: hsl(180, 62%, 55%);
+   --orange: hsl(34, 97%, 64%);
+   --blue: hsl(212, 86%, 64%);
+   --varyDarkBlue: hsl(234, 12%, 34%);
+   --grayishBlue: hsl(229, 6%, 66%);
+   --veryLightGray: hsl(0, 0%, 98%);
+   --weight1: 200;
+   --weight2: 400;
+   --weight3: 600;
+}
+
+.card {
+   border-radius: 5px;
+   box-shadow: 0px 30px 40px -20px var(--grayishBlue);
+   max-height: 300px;
+   padding: 10px;
+   margin: 20px;  
+}
+
+.box_down {
+   top: 150px;
+}
+
+.blue {
+   border-top: 3px solid var(--blue);
+}
+
+img {
+   float: right;
+}
+
+.span {
+   margin-left: 60px;
+   margin-top: 38px;
+}
+
+.card_title {
+   text-align: center;
+   text-decoration: underline;
+   font-size: 15px;
+   font-weight: 800;
+   word-wrap: break-word;
+   padding: 15px 18px 6px 18px;
+}
+
+.card_btn {
+   width: 50px;
+   float: right;
+}
+
+.card_description {
+   margin: 5px;
+   font-size: 12px;
+   text-align: justify;
+   padding: 0px 18px 0px 18px;
+}
+
+.post_text {
+   overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 10;
+   -webkit-box-orient: vertical;
+}
+
+.post_card {
+   cursor: pointer;
+}
+
+.comment_btn {
+   height: 25px;  
+   padding-left: 0.75rem;
+   padding-right: 0.75rem;
+   padding-bottom: 0.1rem;
+   margin-left: 25px;
+   border-width: 0.125rem;
+   justify-content: center;
+   flex-direction: row;
+   display: inline-flex;
+   position: relative;
+   color: white;
+   background: rgba(0, 0, 0, 0.54);
+   border-radius: 999px;
+}
+
+.comment_btn:hover {
+   background-color: var(--grayishBlue);
+}
+
+.comment_btnIcons {
+   display: flex;
+   align-items: center;
+}
+
+
