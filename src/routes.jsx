@@ -11,6 +11,7 @@ import Page404 from "./pages/Page404"
 
 /** auth middleware */
 import { AuthorizeUser, ProtectRoute } from './middleware/auth.js'
+import PostPage from "./pages/PostPage/index.jsx"
 
 function AppRoutes() {
    return (
@@ -21,6 +22,7 @@ function AppRoutes() {
             <Route path="/AddSubjects" element={<AuthorizeUser> <Dashboard /> </AuthorizeUser>}> </Route>
             <Route path="/Reset" element={ <Reset /> }> </Route>
             <Route path="/subject" element={ <AuthorizeUser> <Subject /> </AuthorizeUser>}></Route>
+            <Route path="/post/:id" element={ <AuthorizeUser> <PostPage /> </AuthorizeUser>}></Route>
             <Route path="/subjects" element={ <AuthorizeUser> <Subjects /> </AuthorizeUser>}></Route>
             <Route path="*" element={ <Page404 />}></Route>
             <Route path="/leaderboards" element={ <Leaderboards/> }></Route>

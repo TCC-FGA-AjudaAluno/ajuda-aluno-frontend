@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+a:-webkit-any-link {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
 body {
   margin: 0;
   font-family: 'Kodchasan', sans-serif;
