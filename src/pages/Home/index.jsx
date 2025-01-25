@@ -88,14 +88,14 @@ function Home() {
    const setUsername = useAuthStore(state => state.setUsername);
    const formikUser = useFormik({
       initialValues : {
-         username: 'example123',
-         password : 'admin@123'
+         username: '',
+         password : ''
       },
       validate : usernameValidate,
       validateOnBlur: false,
       validateOnChange: false,
       onSubmit : async values => {
-      
+         console.log('onSubmit values: ', values);
          setUsername(values.username)
 
          let loginPromise = verifyPassword({ username : values.username , password : values.password })
@@ -106,9 +106,10 @@ function Home() {
          });
 
          loginPromise.then(res => {
-            let { token, username } = res.data;
+            let { token, user } = res.data;
+            console.log("RES.DATA::::", res.data);
             localStorage.setItem('token', token);
-            localStorage.setItem('username', username);
+            localStorage.setItem('user', JSON.stringify(user));
             navigate('/home');
          }).catch( error => {
             error : <b>Password Not Match!</b>

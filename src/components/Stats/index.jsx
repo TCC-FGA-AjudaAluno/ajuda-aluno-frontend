@@ -10,8 +10,13 @@ function Stats() {
    const [semesterDays, setSemesterDays] = React.useState(0);
 
    const fetchUser = () =>{
-      const username = localStorage.getItem('username')
-      getUser({username}).then((res) => {
+      const user = JSON.parse(localStorage.getItem('user'));
+
+      console.log('userRRR: ', user);
+      getUser({
+         id : user.id,
+         token : localStorage.getItem('token')
+      }).then((res) => {
          setData(res.data);
       });
    }

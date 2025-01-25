@@ -12,21 +12,31 @@ export async function getUsername(){
 }
 
 /** authenticate function */
-export async function authenticate(username){
+export async function authenticate(values){
     try {
-        return await axios.post('/api/authenticate', { username })
+        return await axios.post('/auth/token', { 
+            email: values.username,
+            password: values.password
+         });
     } catch (error) {
         return { error : "Username doesn't exist...!"}
     }
 }
 
 /** get User details */
-export async function getUser({ username }){
+export async function getUser({ id, token }){
+    console.log('id: ', id);
+    console.log('token: ', token);
+
     try {
-        const { data } = await axios.get(`/api/user/${username}`);
+        const { data } = await axios.get(`/users/${id}`, {
+            headers : {
+                Authorization: `Bearer ${token}`
+            } 
+        });
         return { data };
     } catch (error) {
-        return { error : "Password doesn't Match...!"}
+        return { error : "User doesn't exist...!"}
     }
 }
 
@@ -106,7 +116,7 @@ export async function registerUser(credentials){
 export async function verifyPassword({ username, password }){
     try {
         if(username){
-            const { data } = await axios.post('/api/login', { username, password })
+            const { data } = await axios.post('/auth/introspect', { username, password })
             console.log('data login: ', data);
             return Promise.resolve({ data });
         }
