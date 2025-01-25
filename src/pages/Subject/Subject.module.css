@@ -47,6 +47,12 @@
    overflow: auto;
 }
 
+.post_btn {
+   display: flex;
+    float: right;
+    margin-right: 1em;
+}
+
 .schedule {
    padding-top: 20px;
    padding-left: 4px;

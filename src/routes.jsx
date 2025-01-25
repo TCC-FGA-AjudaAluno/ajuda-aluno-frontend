@@ -8,10 +8,11 @@ import Subject from "./pages/Subject"
 import Subjects from "./pages/ListSubjects"
 import Leaderboards from "./pages/Leaderboards"
 import Page404 from "./pages/Page404"
+import PostPage from "./pages/PostPage"
 
 /** auth middleware */
 import { AuthorizeUser, ProtectRoute } from './middleware/auth.js'
-import PostPage from "./pages/PostPage/index.jsx"
+import { PostProvider } from "./context/PostContext.js"
 
 function AppRoutes() {
    return (
@@ -22,7 +23,12 @@ function AppRoutes() {
             <Route path="/AddSubjects" element={<AuthorizeUser> <Dashboard /> </AuthorizeUser>}> </Route>
             <Route path="/Reset" element={ <Reset /> }> </Route>
             <Route path="/subject" element={ <AuthorizeUser> <Subject /> </AuthorizeUser>}></Route>
-            <Route path="/post/:id" element={ <AuthorizeUser> <PostPage /> </AuthorizeUser>}></Route>
+            <Route path="/post/:id" element={ 
+               <AuthorizeUser> 
+                  <PostPage />
+               </AuthorizeUser>
+            }>
+            </Route>
             <Route path="/subjects" element={ <AuthorizeUser> <Subjects /> </AuthorizeUser>}></Route>
             <Route path="*" element={ <Page404 />}></Route>
             <Route path="/leaderboards" element={ <Leaderboards/> }></Route>

@@ -41,7 +41,9 @@ export function useAsync(func, dependencies = []){
 
     useEffect(() => {
         execute();
-    }, [execute])
+    }, [execute]);
+
+    console.log("state: ", state);
 
     return state;
 }

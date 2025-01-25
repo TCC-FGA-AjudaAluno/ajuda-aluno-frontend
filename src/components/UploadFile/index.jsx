@@ -7,6 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { getMaterials } from '../../helper/helper'; //trocar para funcao GET listar todos os materiais da materia
 
 
@@ -45,8 +48,35 @@ function UploadFile() {
    fetchMaterials();
   }, []);
 
+  const VisuallyHiddenInput = styled('input')({
+    clip: 'rect(0 0 0 0)',
+    clipPath: 'inset(50%)',
+    height: 20,
+    overflow: 'hidden',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    whiteSpace: 'nowrap',
+    width: 1,
+  });
+
   return (
-    <div/>
+    <div>
+      <Button
+          component="label"
+          role={undefined}
+          variant="contained"
+          tabIndex={-1}
+          startIcon={<CloudUploadIcon  />}
+      >
+          Enviar arquivos
+          <VisuallyHiddenInput
+            type="file"
+            onChange={(event) => console.log(event.target.files)}
+            multiple
+          />
+      </Button>
+    </div>
   );
 }
 

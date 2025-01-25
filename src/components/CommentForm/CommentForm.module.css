@@ -1,0 +1,22 @@
+.comment_form_row {
+   display: flex;
+   padding-left: 20px;
+   gap: .5rem;
+}
+
+.message_input {
+   flex-grow: 1;
+   resize: none;
+   height: 70px;
+   border-radius: .5em;
+   padding: .5em;
+   font-size: inherit;
+   font-family: inherit;
+   border: 2px solid hsl(235, 50%, 74%);
+   line-height: 1.4;
+}
+
+.error_msg {
+   color: hsl(0, 100%, 67%);
+}
+
