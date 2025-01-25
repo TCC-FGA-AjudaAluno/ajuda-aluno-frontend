@@ -35,8 +35,9 @@ function StickyHeadTable() {
   const fetchUsers = () =>{
     var users = [];
     getUsers().then((res) => {
+      console.log('res: ', res.data);
       res.data.forEach(function(user, count) {
-         users.push(createData(count+1, user.username, user.course, user.points));
+         users.push(createData(count+1, user.name, user.course, user.points));
       });
       setData(users);
    });

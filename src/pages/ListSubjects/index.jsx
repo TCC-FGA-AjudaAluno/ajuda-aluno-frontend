@@ -58,7 +58,7 @@ function  Dashboard() {
                   </Select>
                </FormControl>
                {
-               inputData.map((subject) =>  <Card name={subject.name}  description={subject.syllabus} /> )
+               inputData.map((subject) =>  <Card name={subject.name}  description={subject.description} /> )
                }
              
             </div>

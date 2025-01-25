@@ -53,14 +53,20 @@ export async function getSubject({ name }){
 /** get Subject details */
 export async function getAllSubject(){
     try {
-        var { data } = await axios.get(`/api/subjects`);
+        var { data } = await axios.get(`/subjects`, {
+            params: {
+                enrolled: false
+            },
+            headers : {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            } 
+        });
         console.log("data: ", data);
         return { data } ;
     } catch (error) {
         return { error : "Subject doesn't Match...!"}
     }
 }
-
 
 /** get Subject details */
 export async function getSubjectByUser(username){
@@ -75,7 +81,7 @@ export async function getSubjectByUser(username){
 /** get all Users details */
 export async function getUsers(){
     try {
-        const { data } = await axios.get('/api/users');
+        const { data } = await axios.get('/users');
         return { data };
     } catch (error) {
         return { error : "No user data available...!"}

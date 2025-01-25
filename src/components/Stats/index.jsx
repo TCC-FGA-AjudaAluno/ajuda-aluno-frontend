@@ -9,16 +9,17 @@ function Stats() {
    const [user, setData] = React.useState({});
    const [semesterDays, setSemesterDays] = React.useState(0);
 
-   const fetchUser = () =>{
-      const user = JSON.parse(localStorage.getItem('user'));
+   const fetchUser = async () =>{
+      //const user = JSON.parse(localStorage.getItem('user'));
 
-      console.log('userRRR: ', user);
-      getUser({
-         id : user.id,
+      const user = await getUser({
+         id : JSON.parse(localStorage.getItem('user')).id,
          token : localStorage.getItem('token')
       }).then((res) => {
          setData(res.data);
       });
+
+      console.log('userRRR: ', user);
    }
 
    const fetchSemesterLenght = async () => {
@@ -46,7 +47,7 @@ function Stats() {
                src={require(`../../assets/user.png`)}
                style={{cursor: "pointer", borderRadius: "50%"}}
             />
-            <span style={{marginLeft: "20px"}}> {user.username} </span>
+            <span style={{marginLeft: "20px"}}> {user ? user.name : ""} </span>
          </div>
          <div style={{height: "200px", marginBottom:"25px"}}>
             <BarChart/>
@@ -55,7 +56,7 @@ function Stats() {
             <CalendarMonthOutlinedIcon style={{width: "38px", height: "35px", marginRight: "9px"}}/>
             <span>{semesterDays} dias <br/> Fim do semestre</span>
             <span style={{marginLeft: "50px"}}>Pontos:</span>
-            <span style={{marginLeft: "10px"}}>{user.points}</span>
+            <span style={{marginLeft: "10px"}}>{user ? user.points : ""}</span>
          </div>
       </div>
    )
