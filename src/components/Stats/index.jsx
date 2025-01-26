@@ -3,11 +3,15 @@ import BarChart from '../BarChart';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import { getUser } from '../../helper/helper';
 import { fetchSemesterDuration } from "../../helper/scraper.js";
+import Odometer from "react-odometerjs";
+import "odometer/themes/odometer-theme-default.css";
 
 function Stats() {
 
    const [user, setData] = React.useState({});
    const [semesterDays, setSemesterDays] = React.useState(0);
+
+   const [odometerValue, setOdometerValue] = React.useState(0);
 
    const fetchUser = async () =>{
       //const user = JSON.parse(localStorage.getItem('user'));
@@ -18,8 +22,6 @@ function Stats() {
       }).then((res) => {
          setData(res.data);
       });
-
-      console.log('userRRR: ', user);
    }
 
    const fetchSemesterLenght = async () => {
@@ -30,7 +32,11 @@ function Stats() {
    React.useEffect(() => {
       fetchUser();
       fetchSemesterLenght();
-   }, []);
+
+      setTimeout(() => {
+         setOdometerValue(odometerValue + 1);
+       }, 1000);
+   }, [odometerValue]);
 
    return (
       <div style={{display: "grid"}}>
@@ -54,7 +60,12 @@ function Stats() {
          </div>
          <div style={{display: "flex", alignItems: "center", marginLeft: "28px"}}>
             <CalendarMonthOutlinedIcon style={{width: "38px", height: "35px", marginRight: "9px"}}/>
-            <span>{semesterDays} dias <br/> Fim do semestre</span>
+            <span>
+               <Odometer style={{marginRight: ".2em"}} format="d" duration={1000} value={semesterDays} />
+               dias 
+               <br/> 
+               Fim do semestre
+            </span>
             <span style={{marginLeft: "50px"}}>Pontos:</span>
             <span style={{marginLeft: "10px"}}>{user ? user.points : ""}</span>
          </div>

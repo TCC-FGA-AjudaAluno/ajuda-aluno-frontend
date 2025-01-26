@@ -21,6 +21,7 @@ function Card(props) {
 
    return (
       <div className={styles.card + ' ' + styles.box_down + ' ' + styles.blue}>
+         {/*
          <div className={styles.card_btn}>
             <IconButton onClick={handleClick} type="button">
             <MoreHorizIcon/>
@@ -40,6 +41,7 @@ function Card(props) {
                <MenuItem  onClick={handleClose}>Logout</MenuItem>
             </Menu> 
          </div>  
+         */}
          <div className={styles.card_title}>
             <p style={{margin: "0px 5px 0px 0px", cursor: "pointer"}}>{props.name}</p>   
          </div>
