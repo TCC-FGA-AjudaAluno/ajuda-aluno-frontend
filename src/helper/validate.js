@@ -5,8 +5,6 @@ import { authenticate , getEmail } from './helper.js';
 export async function usernameValidate(values){
     const errors = usernameVerify({}, values);
 
-    console.log('VALUES: ', values);
-
     if(values){
         // check user exist or not
         const { status } = await authenticate(values);

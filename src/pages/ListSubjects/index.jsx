@@ -5,6 +5,7 @@ import Card from '../../components/Card'
 import React from 'react'
 import { getAllSubject } from "../../helper/helper"
 import {useEffect , useState } from "react";
+import { Link } from 'react-router-dom'
 
 function  ListSubjects() {
 
@@ -13,7 +14,6 @@ function  ListSubjects() {
 
    const fetchSubject = () => {
       getAllSubject().then(res => {
-
          setInputData(res.data)
       })
    }
@@ -31,7 +31,9 @@ function  ListSubjects() {
                <h1>Matérias</h1>
                {inputData.map((subject) =>  
                      <div className={styles.card}>
-                        <Card name={subject.name}  description={subject.description} /> 
+                        <Link to={`/subject/${subject.id}`} style={{ textDecoration: 'none' }}>
+                           <Card name={subject.name}  description={subject.description} /> 
+                        </Link>
                      </div>
                   )
                } 

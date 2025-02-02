@@ -25,9 +25,6 @@ export async function authenticate(values){
 
 /** get User details */
 export async function getUser({ id, token }){
-    console.log('id: ', id);
-    console.log('token: ', token);
-
     try {
         const { data } = await axios.get(`/users/${id}`, {
             headers : {
@@ -41,12 +38,16 @@ export async function getUser({ id, token }){
 }
 
 /** get Subject details */
-export async function getSubject({ name }){
+export async function getSubject(id){
     try {
-        const { data } = await axios.get(`/api/Subject/${name}`);
-        return { data };
+        var { data } = await axios.get(`/subjects/${id}`, {
+            headers : {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            } 
+        });
+        return { data } ;
     } catch (error) {
-        return { error : "Password doesn't Match...!"}
+        return { error : "Subject doesn't Match...!"}
     }
 }
 
@@ -61,7 +62,6 @@ export async function getAllSubject(){
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             } 
         });
-        console.log("data: ", data);
         return { data } ;
     } catch (error) {
         return { error : "Subject doesn't Match...!"}
@@ -123,7 +123,6 @@ export async function verifyPassword({ username, password }){
     try {
         if(username){
             const { data } = await axios.post('/auth/introspect', { username, password })
-            console.log('data login: ', data);
             return Promise.resolve({ data });
         }
     } catch (error) {

@@ -107,7 +107,6 @@ function Home() {
 
          loginPromise.then(res => {
             let { token, user } = res.data;
-            console.log("RES.DATA::::", res.data);
             localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(user));
             navigate('/home');
