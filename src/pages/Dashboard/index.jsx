@@ -18,18 +18,20 @@ function Dashboard() {
       setAge(event.target.value);
    };
 
-   const fetchUser = () =>{
-      const username = localStorage.getItem('username')
-      //const subjects = getSubjectByUser(username); // (404 sem rota no back)
-   }
+   // const fetchUser = () =>{
+   //    const username = localStorage.getItem('username')
+   //    console.log("executou fetchUser: ", username);
+   //    //const subjects = getSubjectByUser(username); // (404 sem rota no back)
+   // }
 
    const getFgaNews = async () => {
+      console.log("getFgaNews",);
       const result = await fetchFgaNews();
       setFgaNews(result); 
    }
    
    React.useEffect(() => {
-      fetchUser();
+      //fetchUser();
       getFgaNews();
    }, []);
 

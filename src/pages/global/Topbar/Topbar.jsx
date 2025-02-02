@@ -8,6 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
 import SearchResultsList from '../../../components/SearchResultsList';
+import { getAllSubject } from '../../../helper/helper';
 
 function Topbar() {
    const navigate = useNavigate()
@@ -24,8 +25,8 @@ function Topbar() {
    const [results, setResults] = React.useState([]);
 
    const [isVisible, setIsVisible] = React.useState(true);
-
    const newRef = React.useRef(null);
+
    React.useEffect(() => {
       document.addEventListener("mousedown", handleOutsideClick);
       return () => {
@@ -43,14 +44,14 @@ function Topbar() {
 
    const open = Boolean(anchorEl);
    const fetchData = (value) => {
-      axios.get('https://jsonplaceholder.typicode.com/users')
+      getAllSubject()
          .then((response) => response.data)
          .then((json) => {
-            setResults(json.filter((user) => {
+            setResults(json.filter((subject) => {
                return value && 
-                      user && 
-                      user.name && 
-                      user.name.toLowerCase().includes(value.toLowerCase())
+                      subject && 
+                      subject.name && 
+                      subject.name.toLowerCase().includes(value.toLowerCase())
             }));
             console.log(results);
          });

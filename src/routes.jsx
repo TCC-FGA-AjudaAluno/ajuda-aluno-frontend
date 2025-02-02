@@ -22,7 +22,7 @@ function AppRoutes() {
             <Route path="/home" element={<AuthorizeUser> <Dashboard /> </AuthorizeUser>}> </Route>
             <Route path="/AddSubjects" element={<AuthorizeUser> <Dashboard /> </AuthorizeUser>}> </Route>
             <Route path="/Reset" element={ <Reset /> }> </Route>
-            <Route path="/subject" element={ <AuthorizeUser> <Subject /> </AuthorizeUser>}></Route>
+            <Route path="/subject/:id" element={ <AuthorizeUser> <Subject /> </AuthorizeUser>}></Route>
             <Route path="/post/:id" element={ 
                <AuthorizeUser> 
                   <PostPage />

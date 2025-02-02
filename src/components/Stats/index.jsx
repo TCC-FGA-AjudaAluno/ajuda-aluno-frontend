@@ -11,8 +11,6 @@ function Stats() {
    const [user, setData] = React.useState({});
    const [semesterDays, setSemesterDays] = React.useState(0);
 
-   const [odometerValue, setOdometerValue] = React.useState(0);
-
    const fetchUser = async () =>{
       //const user = JSON.parse(localStorage.getItem('user'));
 
@@ -32,11 +30,8 @@ function Stats() {
    React.useEffect(() => {
       fetchUser();
       fetchSemesterLenght();
-
-      setTimeout(() => {
-         setOdometerValue(odometerValue + 1);
-       }, 1000);
-   }, [odometerValue]);
+      console.log("caiu aqui");
+   }, []);
 
    return (
       <div style={{display: "grid"}}>

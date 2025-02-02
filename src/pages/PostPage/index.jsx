@@ -59,7 +59,6 @@ function PostPage() {
       */
    }
    
-
    //const { post } = usePost(id);
    //funcao para requisitar do backend todos os comentários do post que será exibido nessa tela
    //fetchCommentsFromPost:id
@@ -69,7 +68,7 @@ function PostPage() {
          <Topbar/>
             <div className={styles.post_content}>
                <div className={styles.post_body}>
-                  <h1>Título postagem teste</h1>
+                  <h1 className={styles.post_title}>Título postagem teste</h1>
                   <article>
                   Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus 
                   et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque.Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non 
