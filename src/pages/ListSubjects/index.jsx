@@ -14,12 +14,18 @@ function  ListSubjects() {
 
    const fetchSubject = () => {
       getAllSubject().then(res => {
-         setInputData(res.data)
+         console.log("res subjects: ", res.data);
+         if(res.data && res.data.length > 0) {
+            setInputData(res.data.filter((subject, index) => {
+               return index > 0 && index > 1
+            }))
+         }else{
+            setInputData([]);
+         }
       })
    }
 
    useEffect(() => {
-      console.log("rendering page");
       fetchSubject();
    }, []);
   
@@ -29,13 +35,13 @@ function  ListSubjects() {
          <section className={styles.container}>
             <div className={`${styles.columnContentPost} ${styles.square}`}>
                <h1>Matérias</h1>
-               {inputData.map((subject) =>  
+               {inputData.length > 0 ? inputData.map((subject) =>  
                      <div className={styles.card}>
                         <Link to={`/subject/${subject.id}`} style={{ textDecoration: 'none' }}>
                            <Card name={subject.name}  description={subject.description} /> 
                         </Link>
                      </div>
-                  )
+                  ) : <div> </div>
                } 
             </div>
          </section>

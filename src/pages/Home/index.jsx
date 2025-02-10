@@ -107,6 +107,8 @@ function Home() {
 
          loginPromise.then(res => {
             let { token, user } = res.data;
+            console.log("Limpando localStorage");
+            localStorage.clear();
             localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(user));
             navigate('/home');
@@ -156,7 +158,7 @@ function Home() {
             <Components.Container>
                <Components.SignUpContainer signinIn={signIn}>
                   <Components.Form onSubmit={formik.handleSubmit}>
-                     <Components.Title>Create Account</Components.Title>
+                     <Components.Title style={{marginBottom: "90px"}}>Criar cadastro</Components.Title>
                      <Components.Input {...formik.getFieldProps('username')} type='text' placeholder='Nome' />
                      <Components.Input {...formik.getFieldProps('email')} type='text' placeholder='Email' />
                      <Components.Input {...formik.getFieldProps('password')} type='text' placeholder='Senha' />
@@ -168,7 +170,7 @@ function Home() {
 
                <Components.SignInContainer signinIn={signIn}>
                   <Components.Form onSubmit={formikUser.handleSubmit}>
-                     <Components.Title>Sign in</Components.Title>
+                     <Components.Title style={{marginBottom: "40px"}}>Sign in</Components.Title>
                      <Components.Input {...formikUser.getFieldProps('username')} type='text' placeholder='username' />
                      <Components.Input {...formikUser.getFieldProps('password')} type='text' placeholder='Senha' />
                      <Components.Anchor onClick={toggleOverlayRecovery}  href='#'>Esqueceu sua senha?</Components.Anchor>
@@ -179,9 +181,9 @@ function Home() {
                <Components.OverlayContainer signinIn={signIn}>
                   <Components.Overlay signinIn={signIn}>
                      <Components.LeftOverlayPanel signinIn={signIn}>
-                        <Components.Title>Welcome Back!</Components.Title>
+                        <Components.Title style={{marginBottom: "80px"}}>Bem Vindo Novamente!</Components.Title>
                         <Components.Paragraph>
-                           To keep connected with us please login with your personal info
+                           Para permanecer conectado conosco favor logar com suas credenciais
                         </Components.Paragraph>
                         <Components.GhostButton onClick={() => toggle(true)}>
                            Sign In
@@ -189,7 +191,7 @@ function Home() {
                      </Components.LeftOverlayPanel>
                      
                      <Components.RightOverlayPanel signinIn={signIn}>
-                        <Components.Title>Bem vindos</Components.Title>
+                        <Components.Title style={{marginBottom: "40px"}}>Bem vindos!</Components.Title>
                         <Components.Paragraph>
                            Cadastre-se e tenha uma jornada diferenciada
                         </Components.Paragraph>

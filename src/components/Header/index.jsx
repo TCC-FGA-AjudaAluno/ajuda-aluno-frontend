@@ -7,9 +7,6 @@ function Header(props) {
          <Link to={`/${props.path}`}>
             <span>Ajuda Aluno</span>           
          </Link>
-         <nav>
-            <a href=''>Sobre</a>
-         </nav>
       </header>
    )
 }

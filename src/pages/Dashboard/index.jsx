@@ -8,15 +8,21 @@ import { FormControl, MenuItem, Select } from '@mui/material'
 import { fetchFgaNews } from "../../helper/scraper.js";
 import React from 'react'
 import { getSubjectByUser } from "../../helper/helper"
+import TaskList from '../../components/TaskList/index.jsx'
 
 
 function Dashboard() {
    const [age, setAge] = React.useState('');
+   const [taskStatus, setTaskStatus] = React.useState('in_progress');
    const [fgaNews, setFgaNews] = React.useState([]);
 
    const handleChange = (event) => {
       setAge(event.target.value);
    };
+
+   const handleTasksFilter = (event) => {
+      setTaskStatus(event.target.value);
+   }
 
    // const fetchUser = () =>{
    //    const username = localStorage.getItem('username')
@@ -81,8 +87,20 @@ function Dashboard() {
                <Card name="Banco de Dados 1" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque.."/>
             </div>
             <div className={`${styles.columnContent} ${styles.square}`}>
-               <h3 style={{marginBottom: "3.3em"}}>Minhas tarefas</h3>
-               <Card name="Requisitos" description="É a tentativa de se expressar visualmente dados ou valores numéricos de maneira diferenciada."/>
+               <h3>Minhas tarefas</h3>
+               <FormControl sx={{ m: 1, minWidth: 120}}>
+                  <Select
+                     sx={{height: 30, borderRadius: 20}}
+                     className={styles.selectSemester}
+                     value={taskStatus}
+                     displayEmpty
+                     onChange={handleTasksFilter}
+                  >
+                     <MenuItem value={"in_progress"}>Em execução</MenuItem>
+                     <MenuItem value={"done"}>Finalizadas</MenuItem>
+                  </Select>
+               </FormControl>
+              <TaskList/>
             </div>
          </section>
          <Footer />

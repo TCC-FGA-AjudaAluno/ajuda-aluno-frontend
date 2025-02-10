@@ -21,6 +21,7 @@ import Post from '../../components/Post';
 import PostFormDialog from '../../components/PostFormDialog';
 import { useParams } from 'react-router-dom'
 import { getSubject } from '../../helper/helper'
+import { PostList } from '../../components/PostList'
 
 
 
@@ -105,9 +106,8 @@ function Subject() {
                      <MenuItem value={30}>1°/2022</MenuItem>
                   </Select>
                </FormControl>
-               <Post name="Fundamento de Arquitetura de Computadores" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque.Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisquemes ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque"/>
 
-               {/* <PostList/> */}
+               <PostList subjectId={subject.id}/>
             </div>
             <div className={`${styles.columnContentMonitoria} ${styles.square}`}>
                <h3>Monitoria</h3>
