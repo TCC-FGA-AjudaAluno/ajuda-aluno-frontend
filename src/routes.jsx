@@ -23,12 +23,7 @@ function AppRoutes() {
             <Route path="/AddSubjects" element={<AuthorizeUser> <Dashboard /> </AuthorizeUser>}> </Route>
             <Route path="/Reset" element={ <Reset /> }> </Route>
             <Route path="/subject/:id" element={ <AuthorizeUser> <Subject /> </AuthorizeUser>}></Route>
-            <Route path="/post/:id" element={ 
-               <AuthorizeUser> 
-                  <PostPage />
-               </AuthorizeUser>
-            }>
-            </Route>
+            <Route path="/post/:id" element={ <AuthorizeUser> <PostPage /> </AuthorizeUser>}></Route>
             <Route path="/subjects" element={ <AuthorizeUser> <Subjects /> </AuthorizeUser>}></Route>
             <Route path="*" element={ <Page404 />}></Route>
             <Route path="/leaderboards" element={ <Leaderboards/> }></Route>

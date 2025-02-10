@@ -45,9 +45,37 @@ export async function getSubject(id){
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             } 
         });
-        return { data } ;
+        return { data }
     } catch (error) {
         return { error : "Subject doesn't Match...!"}
+    }
+}
+
+/** get a single post from Subject */
+export async function getPost(postId){
+    try {
+        var { data } = await axios.get(`/subjects/:subjectId/posts/${postId}`, {
+            headers : {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            } 
+        });
+        return { data }
+    } catch (error) {
+        return { error : "Could not fetch posts for the specified subject!"}
+    }
+}
+
+/** get all Posts from Subject */
+export async function getSubjectPosts(subjectId){
+    try {
+        var { data } = await axios.get(`/subjects/${subjectId}/posts`, {
+            headers : {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            } 
+        });
+        return { data }
+    } catch (error) {
+        return { error : "Could not fetch posts for the specified subject!"}
     }
 }
 
@@ -64,6 +92,7 @@ export async function getAllSubject(){
         });
         return { data } ;
     } catch (error) {
+        console.log("Error getAllSubject: ", error);
         return { error : "Subject doesn't Match...!"}
     }
 }

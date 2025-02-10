@@ -4,11 +4,8 @@ import styles from './Post.module.css'
 import { Link } from 'react-router-dom';
 
 function Post(props) {
-   //props desse componente será todo o objeto do Post incluso na lista retornada da tela de matéria
-   var num = 1;
-
    return (
-      <Link to={`/post/${num}`} style={{ textDecoration: 'none' }}>
+      <Link to={`/post/${props.id}`} style={{ textDecoration: 'none' }}>
          <div className={styles.post_card}>
             <div className={styles.card + ' ' + styles.box_down + ' ' + styles.blue}> 
                <div className={styles.card_title}>
@@ -23,7 +20,7 @@ function Post(props) {
                         <BsChat />
                      </span>
                      <span>
-                        17
+                        {Math.floor(Math.random() * 100)}
                      </span>
                   </span>
                </a>

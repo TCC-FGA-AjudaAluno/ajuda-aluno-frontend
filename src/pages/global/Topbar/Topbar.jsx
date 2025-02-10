@@ -15,8 +15,7 @@ function Topbar() {
 
  // logout handler function
    function userLogout(){
-      localStorage.removeItem('token');
-      localStorage.removeItem('username');
+      localStorage.clear();
       navigate('/');
    }
    

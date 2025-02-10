@@ -1,19 +1,35 @@
 import { useEffect, useState } from "react";
 import { getPosts } from "../../services/posts";
+import { getSubjectPosts } from "../../helper/helper";
+import Post from "../Post";
 
 
-export function PostList() {
+export function PostList({subjectId}) {
    const [posts, setPosts] = useState([]);
-   useEffect(() => {
-      //descomentar quando a requisição pro back funcionar
-      //getPosts().then(setPosts);
-   }, [])
 
-   return posts.map(post => {
-      return (
-         <h1 key={post.id}>
-            <a href={`/post/${post.id}`}>{post.title}</a>
-         </h1>
-      )
-   })
+   const fetchPosts = () => {
+      getSubjectPosts(subjectId).then(res => {
+         console.log("res.data getSubjectPosts: ", res.data);
+         if (res.data && res.data.length > 0) {
+            setPosts(res.data);
+         }else{
+            setPosts([]);
+         }
+      });
+   }
+
+
+   useEffect(() => {
+      fetchPosts();
+   }, [subjectId])
+
+   return (
+      <div>
+         { posts.length > 0 ? posts.map((post) => 
+            <Post id={post.id} name={post.title} description={post.content}/>
+            ) : <div></div>
+         }
+      </div>
+   )
+   
 }
