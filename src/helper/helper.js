@@ -148,10 +148,11 @@ export async function registerUser(credentials){
 
 
 /** login function */
-export async function verifyPassword({ username, password }){
+export async function verifyPassword(token){
     try {
-        if(username){
-            const { data } = await axios.post('/auth/introspect', { username, password })
+        if(token){
+            console.log('token: ', token);
+            const { data } = await axios.post('/auth/introspect', { token });
             return Promise.resolve({ data });
         }
     } catch (error) {

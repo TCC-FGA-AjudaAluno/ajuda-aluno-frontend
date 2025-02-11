@@ -16,9 +16,7 @@ function  ListSubjects() {
       getAllSubject().then(res => {
          console.log("res subjects: ", res.data);
          if(res.data && res.data.length > 0) {
-            setInputData(res.data.filter((subject, index) => {
-               return index > 0 && index > 1
-            }))
+            setInputData(res.data);
          }else{
             setInputData([]);
          }

@@ -7,10 +7,15 @@ export async function usernameValidate(values){
 
     if(values){
         // check user exist or not
-        const { status } = await authenticate(values);
-
-        if(status !== 201){
+        const res = await authenticate(values);
+        console.log('res: ', res);
+        if(res.status !== 201){
             errors.exist = toast.error('User does not exist...!')
+        }else{
+            console.log('RES TOKEN: ', res.data.accessToken);
+            console.log("Limpando localStorage");
+            localStorage.clear();
+            localStorage.setItem('token', res.data.accessToken);
         }
     }
     passwordVerify(errors, values);
