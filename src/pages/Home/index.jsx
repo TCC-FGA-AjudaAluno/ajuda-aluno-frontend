@@ -103,7 +103,7 @@ function Home() {
          console.log('onSubmit values: ', values);
          setUsername(values.username)
 
-         let loginPromise = verifyPassword({ username : values.username , password : values.password })
+         let loginPromise = verifyPassword(localStorage.getItem('token'))
          toast.promise(loginPromise, {
          loading: 'Checking...',
          success : <b>Login Successfully...!</b>,
@@ -112,6 +112,7 @@ function Home() {
 
          loginPromise.then(res => {
             let { token, user } = res.data;
+            console.log('RES TOKEN: ', token);
             console.log("Limpando localStorage");
             localStorage.clear();
             localStorage.setItem('token', token);
