@@ -17,6 +17,8 @@ function PostPage() {
 
    const [post, setPost] = React.useState({});
    const [comments, setComments] = React.useState([]);
+   const [message, setMessage] = React.useState("");
+   const [loading, setLoading] = React.useState(false);
 
    var { id } = useParams();
    console.log("id: ", id);
@@ -26,9 +28,11 @@ function PostPage() {
       timeStyle: "short"
    })
    
-   function onCommentCreate(message){
+   const onCommentCreate = (e) => {
+      e.preventDefault();
       console.log("apertou enviar: ", message);
-      createPostComment({ content: post.id, postId: message }).then(res => {
+      setLoading(true);
+      createPostComment({ content: message, postId: post.id }).then(res => {
          console.log("res.data getPost: ", res.data);
          if(res.data){
             fetchPost();
@@ -42,6 +46,8 @@ function PostPage() {
          console.log("res.data getPost: ", res.data);
          setPost(res.data);
          setComments(res.data.comments);
+         setLoading(false);
+         setMessage("");
       });
    }
  
@@ -67,16 +73,24 @@ function PostPage() {
          <div className={styles.comments_section}>
             <h3 className={styles.comments_title}>Comentários:</h3>
             <section>
-               <CommentForm
-                  loading={false}
-                  error={false}
-                  onSubmit={onCommentCreate}
-               />
+               <form onSubmit={onCommentCreate}>
+                  <div className={styles.comment_form_row}>
+                     <textarea
+                        autoFocus={false}
+                        value={message}
+                        onChange={e => setMessage(e.target.value)}
+                        className={styles.message_input}
+                     />
+                     <button className={styles.btn} type="submit" disabled={loading}>
+                        {loading ? "Enviando" : "Enviar"}
+                     </button>
+                  </div>
+               </form>
                <div className={styles.comment_container}>
                      <CommentList comments={ comments ?? []}/>
-                  </div>
-               </section>
-            </div>
+               </div>
+            </section>
+         </div>
          <Footer/>
       </div>
    )

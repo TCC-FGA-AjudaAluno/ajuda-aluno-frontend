@@ -26,7 +26,7 @@ export function PostList({subjectId}) {
    return (
       <div>
          { posts.length > 0 ? posts.map((post) => 
-            <Post id={post.id} name={post.title} description={post.content}/>
+            <Post id={post.id} name={post.title} description={post.content} totalComments={post.comments}/>
             ) : <div></div>
          }
       </div>
