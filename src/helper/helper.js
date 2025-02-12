@@ -219,16 +219,17 @@ export async function resetPassword({ username, password }){
     }
 }
 
-
-/** update user profile function */
-export async function updateUserSubject(subject){
+/** create a comment on a post */
+export async function createPostComment({ content, postId }){
+    console.log('token: ', localStorage.getItem('token'));
     try {
-        
-        const username = await localStorage.getItem('username');
-        const status = await axios.put('/api/userSubject', { username , subject });
-
-        return Promise.resolve({ status })
+        var { data } = await axios.post('/comments', { content, postId,
+            headers : {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        return { data }
     } catch (error) {
-        return Promise.reject({ status : "Couldn't Update Profile...!"})
+        return { error : "Couldn't Create Comment...!" }
     }
 }

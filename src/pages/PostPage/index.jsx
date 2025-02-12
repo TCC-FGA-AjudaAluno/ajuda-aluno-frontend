@@ -8,38 +8,7 @@ import { useAsyncFn } from '../../hooks/fetch.hook';
 import { createComment } from '../../services/comment';
 import { usePost } from '../../context/PostContext';
 import Footer from '../../components/Footer';
-import { getPost } from '../../helper/helper';
-
-const commentsMock = {
-   comments:
-   [
-      {
-         id: 1,
-         message: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus consectetur quis aliquid veritatis dolor explicabo nihil, neque, expedita corporis hic non voluptas? Velit placeat error vel tempore, aspernatur quia! Omnis.",
-         user: {
-            name: "Matt Murdock"
-         },
-         createdAt: "Wed, 09 Aug 2014 00:00:00 GMT"
-      },
-      {
-         id: 2,
-         message: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus consectetur quis aliquid veritatis dolor explicabo nihil, neque, expedita corporis hic non voluptas? Velit placeat error vel tempore, aspernatur quia! Omnis.",
-         user: {
-            name: "Anthony Edward Stark"
-         },
-         createdAt: "Fri, 18 Jan 2018 00:00:00 GMT"
-      },
-      {
-         id: 3,
-         message: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus consectetur quis aliquid veritatis dolor explicabo nihil, neque, expedita corporis hic non voluptas? Velit placeat error vel tempore, aspernatur quia! Omnis.",
-         user: {
-            name: "Steven Rogers"
-         },
-         createdAt: "Mon, 23 Apr 2024 00:00:00 GMT"
-      }
-   ]
-}
-
+import { createPostComment, getPost } from '../../helper/helper';
 
 function PostPage() {
 
@@ -47,6 +16,7 @@ function PostPage() {
    //const { loading, error, execute: createCommentFn } = useAsyncFn(createComment);
 
    const [post, setPost] = React.useState({});
+   const [comments, setComments] = React.useState([]);
 
    var { id } = useParams();
    console.log("id: ", id);
@@ -57,12 +27,13 @@ function PostPage() {
    })
    
    function onCommentCreate(message){
-      console.log("apertou enviar");
-      /*
-      return createCommentFn({ postId: post.id, message }).then(
-         createLocalComment
-      )
-      */
+      console.log("apertou enviar: ", message);
+      createPostComment({ content: post.id, postId: message }).then(res => {
+         console.log("res.data getPost: ", res.data);
+         if(res.data){
+            fetchPost();
+         }
+      });
    }
    
    const fetchPost = async () => {
@@ -70,9 +41,10 @@ function PostPage() {
       getPost(id).then(res => {
          console.log("res.data getPost: ", res.data);
          setPost(res.data);
+         setComments(res.data.comments);
       });
    }
-   
+ 
    React.useEffect(() => {
       fetchPost();
    }, [])
@@ -101,7 +73,7 @@ function PostPage() {
                   onSubmit={onCommentCreate}
                />
                <div className={styles.comment_container}>
-                     <CommentList comments={ post.comments ? post.comments : []}/>
+                     <CommentList comments={ comments ?? []}/>
                   </div>
                </section>
             </div>
