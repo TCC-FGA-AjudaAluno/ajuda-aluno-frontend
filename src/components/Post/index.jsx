@@ -20,7 +20,7 @@ function Post(props) {
                         <BsChat />
                      </span>
                      <span>
-                        {Math.floor(Math.random() * 100)}
+                        {props.totalComments}
                      </span>
                   </span>
                </a>

@@ -215,10 +215,18 @@ export async function resetPassword({ username, password }){
 /** create a comment on a post */
 export async function createPostComment({ content, postId }){
     console.log('token: ', localStorage.getItem('token'));
+    console.log('content: ', content);
+    console.log('postId: ', postId);
+
     try {
-        var { data } = await axios.post('/comments', { content, postId,
+        var { data } = await axios.post('/comments', { 
+            content,
+            postId,
+        },
+        {
             headers : {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                "Authorization": `Bearer ${localStorage.getItem('token')}`,
+                "Content-Type": 'application/json'
             }
         });
         return { data }
