@@ -65,14 +65,19 @@ function Home() {
 /**Registration formik */
    const formik = useFormik({
       initialValues : {
-         email: 'doyol56239@cnogs.com',
-         username: 'example123',
-         password : 'admin@123'
+         name: 'Rubem',
+         course: 'Engenharia de software',
+         password: 'example123',
+         passwordConfirmation: 'example123',
+         username: 'aluno@email.com',
+         emailConfirmation: 'aluno@email.com',
+         registrationNumber: '1234556',
+      //   enrollDate : 'admin@123'
       },
-      validate : registerValidation,
       validateOnBlur: false,
       validateOnChange: false,
       onSubmit : async values => {
+         console.log("aquii",values);
          let registerPromise = registerUser(values)
          toast.promise(registerPromise, {
            loading: 'Creating...',
@@ -80,7 +85,7 @@ function Home() {
            error : <b>Could not Register.</b>
          });
    
-         registerPromise.then(function(){ navigate('/home')});   
+         //registerPromise.then(function(){ navigate('/home')});   
          }
    })
 
@@ -158,12 +163,14 @@ function Home() {
             <Components.Container>
                <Components.SignUpContainer signinIn={signIn}>
                   <Components.Form onSubmit={formik.handleSubmit}>
-                     <Components.Title style={{marginBottom: "90px"}}>Criar cadastro</Components.Title>
-                     <Components.Input {...formik.getFieldProps('username')} type='text' placeholder='Nome' />
-                     <Components.Input {...formik.getFieldProps('email')} type='text' placeholder='Email' />
-                     <Components.Input {...formik.getFieldProps('password')} type='text' placeholder='Senha' />
-                     <Components.Input {...formik.getFieldProps('registrationNumber')} type='text' placeholder='Informe sua matrícula' />
-                     <Components.Input {...formik.getFieldProps('course')} type='text' placeholder='Informe seu curso' />
+                     <Components.Title style={{marginBottom: "10px" , fontSize: "1rem"}}>Criar cadastro</Components.Title>
+                     <Components.Input style={{height: "10px"}} {...formik.getFieldProps('name')} type='text' placeholder='Nome' />
+                     <Components.Input style={{height: "10px"}} {...formik.getFieldProps('username')} type='text' placeholder='Email' />
+                     <Components.Input style={{height: "10px"}} {...formik.getFieldProps('emailConfirmation')} type='text' placeholder='Confirme o Email' />
+                     <Components.Input style={{height: "10px"}} {...formik.getFieldProps('password')} type='text' placeholder='Senha' />
+                     <Components.Input style={{height: "10px"}} {...formik.getFieldProps('passwordConfirmation')} type='text' placeholder='Confirme a Senha' />
+                     <Components.Input style={{height: "10px"}} {...formik.getFieldProps('registrationNumber')} type='text' placeholder='Informe sua matrícula' />
+                     <Components.Input style={{height: "10px"}} {...formik.getFieldProps('course')} type='text' placeholder='Informe seu curso' />
                      <Components.Button type='submit'>Sign Up</Components.Button>
                   </Components.Form>
                </Components.SignUpContainer>
@@ -171,7 +178,7 @@ function Home() {
                <Components.SignInContainer signinIn={signIn}>
                   <Components.Form onSubmit={formikUser.handleSubmit}>
                      <Components.Title style={{marginBottom: "40px"}}>Sign in</Components.Title>
-                     <Components.Input {...formikUser.getFieldProps('username')} type='text' placeholder='username' />
+                     <Components.Input {...formikUser.getFieldProps('username')} type='text' placeholder='Email' />
                      <Components.Input {...formikUser.getFieldProps('password')} type='text' placeholder='Senha' />
                      <Components.Anchor onClick={toggleOverlayRecovery}  href='#'>Esqueceu sua senha?</Components.Anchor>
                      <Components.Button  type='submit' >Sigin In</Components.Button>
