@@ -69,7 +69,7 @@ function Subject() {
    */
 
    return (
-      <div>
+      <div style={{overflowX: 'hidden'}}>
          <Topbar/>
          <div className={styles.subject_name}>
             <p> {subject.name} </p>
