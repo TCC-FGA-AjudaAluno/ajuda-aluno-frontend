@@ -22,7 +22,7 @@ import useFetch from '../../hooks/fetch.hook.js'
 function AddSubjects() {
    const { username } = useAuthStore(state => state.auth);
    const [OTP, setOTP] = useState();
-   const navigate = useNavigate()
+   const navigate = useNavigate();
 
    const [isOpen, setIsOpen] = useState(false);
 

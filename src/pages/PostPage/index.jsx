@@ -8,38 +8,7 @@ import { useAsyncFn } from '../../hooks/fetch.hook';
 import { createComment } from '../../services/comment';
 import { usePost } from '../../context/PostContext';
 import Footer from '../../components/Footer';
-import { getPost } from '../../helper/helper';
-
-const commentsMock = {
-   comments:
-   [
-      {
-         id: 1,
-         message: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus consectetur quis aliquid veritatis dolor explicabo nihil, neque, expedita corporis hic non voluptas? Velit placeat error vel tempore, aspernatur quia! Omnis.",
-         user: {
-            name: "Matt Murdock"
-         },
-         createdAt: "Wed, 09 Aug 2014 00:00:00 GMT"
-      },
-      {
-         id: 2,
-         message: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus consectetur quis aliquid veritatis dolor explicabo nihil, neque, expedita corporis hic non voluptas? Velit placeat error vel tempore, aspernatur quia! Omnis.",
-         user: {
-            name: "Anthony Edward Stark"
-         },
-         createdAt: "Fri, 18 Jan 2018 00:00:00 GMT"
-      },
-      {
-         id: 3,
-         message: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus consectetur quis aliquid veritatis dolor explicabo nihil, neque, expedita corporis hic non voluptas? Velit placeat error vel tempore, aspernatur quia! Omnis.",
-         user: {
-            name: "Steven Rogers"
-         },
-         createdAt: "Mon, 23 Apr 2024 00:00:00 GMT"
-      }
-   ]
-}
-
+import { createPostComment, getPost } from '../../helper/helper';
 
 function PostPage() {
 
@@ -47,6 +16,9 @@ function PostPage() {
    //const { loading, error, execute: createCommentFn } = useAsyncFn(createComment);
 
    const [post, setPost] = React.useState({});
+   const [comments, setComments] = React.useState([]);
+   const [message, setMessage] = React.useState("");
+   const [loading, setLoading] = React.useState(false);
 
    var { id } = useParams();
    console.log("id: ", id);
@@ -56,13 +28,16 @@ function PostPage() {
       timeStyle: "short"
    })
    
-   function onCommentCreate(message){
-      console.log("apertou enviar");
-      /*
-      return createCommentFn({ postId: post.id, message }).then(
-         createLocalComment
-      )
-      */
+   const onCommentCreate = (e) => {
+      e.preventDefault();
+      console.log("apertou enviar: ", message);
+      setLoading(true);
+      createPostComment({ content: message, postId: post.id }).then(res => {
+         console.log("res.data getPost: ", res.data);
+         if(res.data){
+            fetchPost();
+         }
+      });
    }
    
    const fetchPost = async () => {
@@ -70,9 +45,12 @@ function PostPage() {
       getPost(id).then(res => {
          console.log("res.data getPost: ", res.data);
          setPost(res.data);
+         setComments(res.data.comments);
+         setLoading(false);
+         setMessage("");
       });
    }
-   
+ 
    React.useEffect(() => {
       fetchPost();
    }, [])
@@ -95,16 +73,24 @@ function PostPage() {
          <div className={styles.comments_section}>
             <h3 className={styles.comments_title}>Comentários:</h3>
             <section>
-               <CommentForm
-                  loading={false}
-                  error={false}
-                  onSubmit={onCommentCreate}
-               />
-               <div className={styles.comment_container}>
-                     <CommentList comments={ post.comments ? post.comments : []}/>
+               <form onSubmit={onCommentCreate}>
+                  <div className={styles.comment_form_row}>
+                     <textarea
+                        autoFocus={false}
+                        value={message}
+                        onChange={e => setMessage(e.target.value)}
+                        className={styles.message_input}
+                     />
+                     <button className={styles.btn} type="submit" disabled={loading}>
+                        {loading ? "Enviando" : "Enviar"}
+                     </button>
                   </div>
-               </section>
-            </div>
+               </form>
+               <div className={styles.comment_container}>
+                     <CommentList comments={ comments ?? []}/>
+               </div>
+            </section>
+         </div>
          <Footer/>
       </div>
    )

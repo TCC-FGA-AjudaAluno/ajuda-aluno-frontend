@@ -155,10 +155,11 @@ export async function registerUser(credentials){
 
 
 /** login function */
-export async function verifyPassword({ username, password }){
+export async function verifyPassword(token){
     try {
-        if(username){
-            const { data } = await axios.post('/auth/introspect', { username, password })
+        if(token){
+            console.log('token: ', token);
+            const { data } = await axios.post('/auth/introspect', { token });
             return Promise.resolve({ data });
         }
     } catch (error) {
@@ -218,16 +219,25 @@ export async function resetPassword({ username, password }){
     }
 }
 
+/** create a comment on a post */
+export async function createPostComment({ content, postId }){
+    console.log('token: ', localStorage.getItem('token'));
+    console.log('content: ', content);
+    console.log('postId: ', postId);
 
-/** update user profile function */
-export async function updateUserSubject(subject){
     try {
-        
-        const username = await localStorage.getItem('username');
-        const status = await axios.put('/api/userSubject', { username , subject });
-
-        return Promise.resolve({ status })
+        var { data } = await axios.post('/comments', { 
+            content,
+            postId,
+        },
+        {
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem('token')}`,
+                "Content-Type": 'application/json'
+            }
+        });
+        return { data }
     } catch (error) {
-        return Promise.reject({ status : "Couldn't Update Profile...!"})
+        return { error : "Couldn't Create Comment...!" }
     }
 }

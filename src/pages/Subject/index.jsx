@@ -42,6 +42,7 @@ function Subject() {
    };
 
    const handleSubscribe = () => {
+      console.log("clicou botao inscrever");
       //rota de inscrição ou desinscrição (a depender do estado atual) em matéria para o back-end aqui;
       // -> /subscribeSubject/:subjectId ou /unsubscribeSubject/:subjectId
       setButtonText("Desinscrever"); // muda texto butao depois de se inscrever com sucesso
@@ -54,6 +55,7 @@ function Subject() {
    }
 
    React.useEffect(() => { 
+      console.log("renderizou matéria");
       fetchSubject();
     }, [])
 

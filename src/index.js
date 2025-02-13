@@ -6,7 +6,7 @@ import "./styles.css"
 import { registerLicense } from '@syncfusion/ej2-base';
 // import ENV from '../config'
 
-registerLicense('Ngo9BigBOggjHTQxAR8/V1NHaF1cWWhIYVFpR2Nbe05xdF9CZ1ZSR2YuP1ZhSXxQd0djWn5edHNWQmRUUUQ=');
+registerLicense('Ngo9BigBOggjHTQxAR8/V1NHaF1cWmhIfEx1RHxQdld5ZFRHallYTnNWUj0eQnxTdEBjW35dcH1XRGVcWEJzXA==');
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
