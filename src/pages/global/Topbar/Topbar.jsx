@@ -7,7 +7,6 @@ import { Link , useNavigate  } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
-import SearchResultsList from '../../../components/SearchResultsList';
 import { getAllSubject } from '../../../helper/helper';
 
 function Topbar() {
@@ -52,7 +51,6 @@ function Topbar() {
                       subject.name && 
                       subject.name.toLowerCase().includes(value.toLowerCase())
             }));
-            console.log(results);
          });
    }
    const handleChange = (value) => {
@@ -65,7 +63,11 @@ function Topbar() {
    const handleClose = () => {
      setAnchorEl(null);
    };
-
+   const handleResult = (value) => {
+      setInput(value.name);
+      setIsVisible(false);
+      navigate(`/subject/${value.id}`);
+   };
 
    return (
       <div style={{border: "1px", boxShadow: "0px 4px 4px #000000"}}>
@@ -92,7 +94,18 @@ function Topbar() {
                      onChange={(e) => handleChange(e.target.value)}>
                   </InputBase>
                </div>
-               <SearchResultsList results={results} isVisible={isVisible} />
+               <div className={isVisible ? styles.resultsList : styles.hide}>
+                  {
+                     results.map((result) => {
+                        return(
+                           <div className={styles.searchResult} onClick={(e) => handleResult(result)}>
+                              { result.name }
+                           </div>
+                        )
+                     })
+                  }
+               </div>
+
                <div>
                   <IconButton onClick={handleClick} type="button">
                   <AccountCircleIcon style={{fontSize: "32px"}}/>
