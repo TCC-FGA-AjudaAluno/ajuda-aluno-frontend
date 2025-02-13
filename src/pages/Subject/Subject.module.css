@@ -31,7 +31,6 @@
 }
 
 .columnContentMonitoria {
-   
    display: inline-block;
    margin-top: 1px;
    width: calc(25%);
@@ -49,8 +48,8 @@
 
 .post_btn {
    display: flex;
-    float: right;
-    margin-right: 1em;
+   float: right;
+   margin-right: 1em;
 }
 
 .schedule {

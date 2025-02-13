@@ -3,10 +3,6 @@ import Topbar from '../global/Topbar/Topbar';
 import { useParams } from 'react-router-dom';
 import styles from './PostPage.module.css'
 import { CommentList } from '../../components/CommentList';
-import { CommentForm } from '../../components/CommentForm';
-import { useAsyncFn } from '../../hooks/fetch.hook';
-import { createComment } from '../../services/comment';
-import { usePost } from '../../context/PostContext';
 import Footer from '../../components/Footer';
 import { createPostComment, getPost } from '../../helper/helper';
 

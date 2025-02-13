@@ -1,9 +1,6 @@
 import styles from './Subject.module.css'
 import Footer from "../../components/Footer"
 import Topbar from '../global/Topbar/Topbar'
-import Stats from '../../components/SubjectsComponents/Top'
-import News from '../../components/News'
-import Card from '../../components/Card'
 import React from 'react'
 import MaterialTable from '../../components/UploadFile'
 import DownloadFile from '../../components/DownloadFile'
@@ -18,8 +15,6 @@ import "../../../node_modules/@syncfusion/ej2-popups/styles/material.css";
 import "../../../node_modules/@syncfusion/ej2-schedule/styles/material.css";
 import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, Inject, Resize, DragAndDrop } from '@syncfusion/ej2-react-schedule';
 import { FormControl, MenuItem, Select } from '@mui/material'
-import Post from '../../components/Post';
-import PostFormDialog from '../../components/PostFormDialog';
 import { useParams } from 'react-router-dom'
 import { getSubject } from '../../helper/helper'
 import { PostList } from '../../components/PostList'
@@ -29,7 +24,7 @@ import { PostList } from '../../components/PostList'
 function Subject() {
 
    var { id } = useParams();
-   console.log("id: ", id);
+   console.log("Subject id: ", id);
 
    const [subject, setSubject] = React.useState({});
    const [age, setAge] = React.useState('');
@@ -58,18 +53,10 @@ function Subject() {
    React.useEffect(() => { 
       console.log("renderizou matéria");
       fetchSubject();
-    }, [])
-
-   /*
-   useEffect(() => { 
-      if(buttonText !== initialState){
-        setTimeout(() => setButtonText(initialState), [1000])
-      }
-    }, [buttonText])
-   */
+    }, [id])
 
    return (
-      <div style={{overflowX: 'hidden'}}>
+      <div style={{overflow: "scroll"}}>
          <Topbar/>
          <div className={styles.subject_name}>
             <p> {subject.name} </p>
@@ -91,9 +78,6 @@ function Subject() {
                   <div>
                      <h3>Posts</h3>
                   </div>
-                  <div className={styles.post_btn}>
-                     <PostFormDialog/>
-                  </div>
                </div>
                <FormControl sx={{ m: 1, minWidth: 120}}>
                   <Select
@@ -111,7 +95,6 @@ function Subject() {
                      <MenuItem value={30}>1°/2022</MenuItem>
                   </Select>
                </FormControl>
-
                <PostList subjectId={subject.id}/>
             </div>
             <div className={`${styles.columnContentMonitoria} ${styles.square}`}>

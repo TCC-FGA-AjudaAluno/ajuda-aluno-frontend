@@ -5,9 +5,9 @@ axios.defaults.baseURL = process.env.REACT_APP_SERVER_DOMAIN;
 
 /** To get username from Token */
 export async function getUsername(){
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
     if(!token) return Promise.reject("Cannot find Token");
-    let decode = jwtDecode(token)
+    let decode = jwtDecode(token);
     return decode;
 }
 
@@ -216,6 +216,30 @@ export async function resetPassword({ username, password }){
         return Promise.resolve({ data, status})
     } catch (error) {
         return Promise.reject({ error })
+    }
+}
+
+/** create a post on subject */
+export async function createPost(title, content, subjectId){
+    console.log('token: ', localStorage.getItem('token'));
+    console.log('subjectId: ', subjectId);
+    console.log('content: ', content);
+    console.log('postId: ', title);
+
+    try {
+        var { data } = await axios.post(`/subjects/${subjectId}/posts`, { 
+            title,
+            content,
+        },
+        {
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem('token')}`,
+                "Content-Type": 'application/json'
+            }
+        });
+        return { data }
+    } catch (error) {
+        return { error : "Couldn't Create Comment...!" }
     }
 }
 
