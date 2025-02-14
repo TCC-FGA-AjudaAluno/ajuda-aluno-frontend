@@ -112,6 +112,15 @@
    background-color: var(--secondary);
 }
 
+.btn_red {
+   background-color: var(--red);
+   color: var(--white);
+}
+
+.btn_red:hover {
+   background-color: var(--redish);
+}
+
 .material {
    width: 250px;
    height: 110px;

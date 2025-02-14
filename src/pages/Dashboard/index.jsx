@@ -7,20 +7,26 @@ import Card from '../../components/Card'
 import { FormControl, MenuItem, Select } from '@mui/material'
 import { fetchFgaNews } from "../../helper/scraper.js";
 import React from 'react'
-import { getSubjectByUser } from "../../helper/helper"
+import { getSubjectByUser, getUser } from "../../helper/helper"
 import TaskList from '../../components/TaskList/index.jsx'
-import PopChat from '../../components/Chat'
+import { use } from 'react'
+import { Link } from 'react-router-dom'
 
 
 function Dashboard() {
-
+   const [user, setUser] = React.useState({});
    const [age, setAge] = React.useState('');
    const [taskStatus, setTaskStatus] = React.useState('in_progress');
    const [fgaNews, setFgaNews] = React.useState([]);
 
-
-   const getMessage = (msg) => {
-      console.log("teste menssagem",msg)
+   const fetchUser = async () =>{
+      getUser({
+         id : JSON.parse(localStorage.getItem('user')).id,
+         token : localStorage.getItem('token')
+      }).then((res) => {
+         localStorage.setItem('user', JSON.stringify(res.data));
+         setUser(res.data);
+      });
    }
 
    const handleChange = (event) => {
@@ -44,7 +50,8 @@ function Dashboard() {
    }
    
    React.useEffect(() => {
-      //fetchUser();
+      fetchUser();
+      console.log('user: ', user);
       getFgaNews();
    }, []);
 
@@ -53,7 +60,7 @@ function Dashboard() {
          <Topbar/>
          <section className={styles.container}>
             <div className={`${styles.columnContent} ${styles.rect}`}>
-               <Stats/>
+               <Stats user={user}/>
             </div>
             <div className={`${styles.columnContent} ${styles.rect}`}>
                <h3 style={{marginBottom: "3.3em"}}>Fga notícias</h3>
@@ -71,7 +78,7 @@ function Dashboard() {
                </div>
             </div>
             <div className={`${styles.columnContent} ${styles.square}`}>
-               <h3>Matérias</h3>
+               <h3>Matérias inscritas</h3>
                <FormControl sx={{ m: 1, minWidth: 120}}>
                   <Select
                      sx={{height: 30, borderRadius: 20}}
@@ -88,10 +95,12 @@ function Dashboard() {
                      <MenuItem value={30}>1°/2022</MenuItem>
                   </Select>
                </FormControl>
-               <Card name="Fundamento de Arquitetura de Computadores" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque."/>
-               <Card name="Programação para Sistemas Distribuidos" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque."/>
-               <Card name="Projeto Integrador 1" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque.."/>
-               <Card name="Banco de Dados 1" description="Nam volutpat, risus a lacinia fringilla, lectus velit rutrum ipsum, vitae varius elit odio a turpis. Etiam non sem sit amet ante euismod mollis eu eget velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum varius mauris sit amet risus sollicitudin scelerisque.."/>
+               { user.subjects?.length > 0 ? user.subjects.map((enroll) => 
+                  <Link to={`/subject/${enroll.subject.id}`} style={{ textDecoration: 'none' }}>
+                     <Card name={enroll.subject.name} description={enroll.subject.description}/>
+                  </Link>
+                  ) : <div></div>
+               }
             </div>
             <div className={`${styles.columnContent} ${styles.square}`}>
                <h3>Minhas tarefas</h3>
