@@ -16,7 +16,7 @@ import "../../../node_modules/@syncfusion/ej2-schedule/styles/material.css";
 import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, Inject, Resize, DragAndDrop } from '@syncfusion/ej2-react-schedule';
 import { FormControl, MenuItem, Select } from '@mui/material'
 import { useParams } from 'react-router-dom'
-import { getSubject, getUser } from '../../helper/helper'
+import { enroll, getSubject, getUser, unenroll } from '../../helper/helper'
 import { PostList } from '../../components/PostList'
 
 
@@ -33,22 +33,26 @@ function Subject() {
    const [subscribed, setSubscribed] = React.useState(undefined);
    const [loading, setLoading] = React.useState(true);
 
-   //Criar funcao que faz requisicao pro back de todos os posts da matéria com id x
-
    const handleChange = (event) => {
       setAge(event.target.value);
    };
 
    const handleSubscribe = () => {
-      console.log("clicou botao inscrever: ", subscribed);
-      if(subscribed == true){
-         //chama rota de desinscrever: DELETE unenroll (/subjects/:subjectId/enroll)
-         setSubscribed(false);
-         setButtonText("Inscrever");
+      if(subscribed === true){
+         unenroll({subjectId: subject.id}).then((res) => {
+            if(res.status === 204){
+               setSubscribed(false);
+               setButtonText("Inscrever");
+            }
+         });
+         
       }else{
-         //chama rota de inscrever: POST enroll (/subjects/enroll)
-         setSubscribed(true)
-         setButtonText("Desinscrever");
+         enroll({userId: user.id, subjectId: subject.id}).then((res) => {
+            if(res.data){
+               setSubscribed(true)
+               setButtonText("Desinscrever");
+            }
+         });
       }
    };
 

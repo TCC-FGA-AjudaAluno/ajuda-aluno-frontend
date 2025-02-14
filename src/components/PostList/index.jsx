@@ -10,6 +10,7 @@ export function PostList({subjectId}) {
    const [posts, setPosts] = useState([]);
 
    const fetchPosts = () => {
+      console.log('subjectId PostList: ', subjectId);
       getSubjectPosts(subjectId).then(res => {
          console.log("res.data getSubjectPosts: ", res.data);
          if (res.data && res.data.length > 0) {
@@ -29,7 +30,7 @@ export function PostList({subjectId}) {
          <PostFormDialog subjectId={subjectId} updatePosts={fetchPosts}/>
          <div>
             { posts.length > 0 ? posts.map((post) => 
-               <Post id={post.id} name={post.title} description={post.content}/>
+               <Post id={post.id} name={post.title} description={post.content} comments={post.comments}/>
                ) : <div></div>
             }
          </div>

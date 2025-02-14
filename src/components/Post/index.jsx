@@ -20,7 +20,7 @@ function Post(props) {
                         <BsChat />
                      </span>
                      <span>
-                        {props.totalComments}
+                        {props.comments}
                      </span>
                   </span>
                </a>
