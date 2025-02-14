@@ -227,7 +227,7 @@ export async function createPost(title, content, subjectId){
     console.log('postId: ', title);
 
     try {
-        var { data } = await axios.post(`/subjects/${subjectId}/posts`, { 
+        const { data } = await axios.post(`/subjects/${subjectId}/posts`, { 
             title,
             content,
         },
@@ -250,7 +250,7 @@ export async function createPostComment({ content, postId }){
     console.log('postId: ', postId);
 
     try {
-        var { data } = await axios.post('/comments', { 
+        const { data } = await axios.post('/comments', { 
             content,
             postId,
         },
@@ -263,5 +263,65 @@ export async function createPostComment({ content, postId }){
         return { data }
     } catch (error) {
         return { error : "Couldn't Create Comment...!" }
+    }
+}
+
+/** enroll user in subject */
+export async function enroll({ userId, subjectId }){
+    console.log('userId: ', userId);
+    console.log('subjectId: ', subjectId);
+
+    try {
+       const { data } = await axios.post('/subjects/enroll', { 
+            userId,
+            subjectId
+        },
+        {
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem('token')}`,
+                "Content-Type": 'application/json'
+            }
+        }
+        );
+       return { data }
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+/** unenroll user from subject */
+
+export async function unenroll({ subjectId }){
+    console.log('subjectId: ', subjectId);
+    try {
+       const res = await axios.delete(`/subjects/${subjectId}/enroll`,
+        {
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem('token')}`,
+                "Content-Type": 'application/json'
+            }
+        });
+       return res;
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+/* get rank list */
+
+export async function getRankList(){
+
+    try {
+       const { data } = await axios.get('/users/rank',
+        {
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            }
+        }
+        );
+        
+       return { data };
+    } catch (error) {
+        return Promise.reject(error);
     }
 }

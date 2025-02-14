@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { getUsers } from '../../helper/helper';
+import { getRankList, getUsers } from '../../helper/helper';
 
 
 const columns = [
@@ -34,10 +34,10 @@ function StickyHeadTable() {
 
   const fetchUsers = () =>{
     var users = [];
-    getUsers().then((res) => {
+    getRankList().then((res) => {
       console.log('res: ', res.data);
-      res.data.forEach(function(user, count) {
-         users.push(createData(count+1, user.name, user.course, user.points));
+      res.data.forEach(function(user) {
+         users.push(createData(user.position, user.name, user.course, user.points));
       });
       setData(users);
    });
