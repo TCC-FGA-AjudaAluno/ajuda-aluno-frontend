@@ -9,7 +9,6 @@ import "odometer/themes/odometer-theme-default.css";
 function Stats(props) {
 
    const [semesterDays, setSemesterDays] = React.useState(0);
-   console.log('stats user: ', props.user);
 
    const fetchSemesterLenght = async () => {
       const days = await fetchSemesterDuration();
@@ -32,7 +31,7 @@ function Stats(props) {
                alt="profile-user"
                width="46px"
                height="46px"
-               src={require(`../../assets/user.png`)}
+               src={require(`../../assets/user2.png`)}
                style={{cursor: "pointer", borderRadius: "50%"}}
             />
             <span style={{marginLeft: "20px"}}> {props.user ? props.user.name : ""} </span>
