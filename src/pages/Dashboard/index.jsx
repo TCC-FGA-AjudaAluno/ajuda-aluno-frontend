@@ -16,7 +16,6 @@ import { Link } from 'react-router-dom'
 function Dashboard() {
    const [user, setUser] = React.useState({});
    const [age, setAge] = React.useState('');
-   const [taskStatus, setTaskStatus] = React.useState('in_progress');
    const [fgaNews, setFgaNews] = React.useState([]);
 
    const fetchUser = async () =>{
@@ -33,20 +32,13 @@ function Dashboard() {
       setAge(event.target.value);
    };
 
-   const handleTasksFilter = (event) => {
-      setTaskStatus(event.target.value);
-   }
-
-
    const getFgaNews = async () => {
-      console.log("getFgaNews",);
       const result = await fetchFgaNews();
       setFgaNews(result); 
    }
    
    React.useEffect(() => {
       fetchUser();
-      console.log('user: ', user);
       getFgaNews();
    }, []);
 
@@ -98,20 +90,8 @@ function Dashboard() {
                }
             </div>
             <div className={`${styles.columnContent} ${styles.square}`}>
-               <h3>Minhas tarefas</h3>
-               <FormControl sx={{ m: 1, minWidth: 120}}>
-                  <Select
-                     sx={{height: 30, borderRadius: 20}}
-                     className={styles.selectSemester}
-                     value={taskStatus}
-                     displayEmpty
-                     onChange={handleTasksFilter}
-                  >
-                     <MenuItem value={"in_progress"}>Em execução</MenuItem>
-                     <MenuItem value={"done"}>Finalizadas</MenuItem>
-                  </Select>
-               </FormControl>
-              <TaskList/>
+               <h3>Minhas tarefas</h3>  
+               <TaskList/>
             </div>
          </section>
          <Footer />

@@ -95,12 +95,12 @@ function Subject() {
 
    if (!loading){
       return (
-         <div style={{overflow: "scroll"}}>
+         <div style={{overflow: "hidden", width: "100vw", height: "100vh"}}>
             <Topbar/>
             <div className={styles.subject_name}>
                <p> {subject.name} </p>
             </div>
-            <div className={styles.subscribe_btn}>
+            <div>
                <button type='button' className={!subscribed ? `${styles.btn} ${styles.btn_blue}` : `${styles.btn} ${styles.btn_red}`} onClick={() => handleSubscribe()}>
                   {buttonText}
                </button>

@@ -3,6 +3,7 @@
    --cyan: hsl(180, 62%, 55%);
    --orange: hsl(34, 97%, 64%);
    --blue: hsl(212, 86%, 64%);
+   --yellow: rgb(241, 225, 91);
    --varyDarkBlue: hsl(234, 12%, 34%);
    --grayishBlue: hsl(229, 6%, 66%);
    --veryLightGray: hsl(0, 0%, 98%);
@@ -14,16 +15,19 @@
 .card {
    border-radius: 5px;
    box-shadow: 0px 30px 40px -20px var(--grayishBlue);
-   padding: 30px;
-   margin: 20px;  
+   margin: 10px;  
 }
 
-.box_down {
-   top: 150px;
+.yellow {
+   border-top: 3px solid var(--yellow);;
 }
 
-.blue {
-   border-top: 3px solid var(--blue);
+.green {
+   border-top: 3px solid hsl(123, 71%, 47%);;
+}
+
+.red {
+   border-top: 3px solid var(--red);
 }
 
 img {
@@ -36,12 +40,13 @@ img {
 }
 
 .card_title {
+   display: flex;
+   justify-content: center;
    text-align: center;
    text-decoration: underline;
    font-size: 15px;
    font-weight: 800;
    word-wrap: break-word;
-   padding: 15px 18px 6px 18px;
 }
 
 .card_btn {
@@ -53,7 +58,6 @@ img {
    margin: 0px;
    font-size: 12px;
    text-align: justify;
-   padding: 0px 18px 0px 18px;
 }
 
 .outline {
@@ -62,4 +66,9 @@ img {
    margin: 20px 20px;
 }
 
+.selectSemester {
+   width: 170px;
+   height: 21px;
+   margin-left: 21vw;
+}
 
