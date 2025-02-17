@@ -25,7 +25,7 @@ function Stats(props) {
             display: "flex", 
             width: "100%", 
             alignItems: "center", 
-            margin: "38px 0px 26px 85px"
+            margin: "38px 0px 26px 18px"
          }}>
             <img
                alt="profile-user"
@@ -36,10 +36,12 @@ function Stats(props) {
             />
             <span style={{marginLeft: "20px"}}> {props.user ? props.user.name : ""} </span>
          </div>
-         <div style={{height: "200px", marginBottom:"25px"}}>
-            <BarChart/>
-         </div>
-         <div style={{display: "flex", alignItems: "center", marginLeft: "28px"}}>
+         {/*
+            <div style={{height: "200px", marginBottom:"25px"}}>
+               <BarChart/>
+            </div>
+         */}
+         <div style={{display: "flex", alignItems: "center", marginLeft: "18px"}}>
             <CalendarMonthOutlinedIcon style={{width: "38px", height: "35px", marginRight: "9px"}}/>
             <span>
                <Odometer style={{marginRight: ".2em"}} format="d" duration={1000} value={semesterDays} />
@@ -48,7 +50,7 @@ function Stats(props) {
                Fim do semestre
             </span>
             <span style={{marginLeft: "50px"}}>Pontos:</span>
-            <span style={{marginLeft: "10px"}}>{props.user ? props.user.points : ""}</span>
+            <span style={{marginLeft: "10px"}}>{props.user ? <Odometer value={props.user.points} /> : ""}</span>
          </div>
       </div>
    )

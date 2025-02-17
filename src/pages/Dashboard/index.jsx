@@ -4,13 +4,12 @@ import Topbar from '../global/Topbar/Topbar'
 import Stats from '../../components/Stats'
 import News from '../../components/News'
 import Card from '../../components/Card'
-import { FormControl, MenuItem, Select } from '@mui/material'
 import { fetchFgaNews } from "../../helper/scraper.js";
 import React from 'react'
 import { getSubjectByUser, getUser } from "../../helper/helper"
 import TaskList from '../../components/TaskList/index.jsx'
-import { use } from 'react'
 import { Link } from 'react-router-dom'
+import { MenuItem } from '@mui/material'
 
 
 function Dashboard() {
@@ -43,14 +42,13 @@ function Dashboard() {
    }, []);
 
    return (
-      <div>
+      <div style={{overflowX: "hidden"}}>
          <Topbar/>
          <section className={styles.container}>
+            <Stats user={user}/>
+            <hr style={{width: "35em", border: "0.5px solid gray", margin: "38px 0px 5px 0px"}} />
             <div className={`${styles.columnContent} ${styles.rect}`}>
-               <Stats user={user}/>
-            </div>
-            <div className={`${styles.columnContent} ${styles.rect}`}>
-               <h3 style={{marginBottom: "3.3em"}}>Fga notícias</h3>
+               <h3 style={{marginBottom: "1.5em"}}>Fga notícias</h3>
                <div className={styles.news_content}>
                   { fgaNews.length > 0 ? <News href={fgaNews[0].href} title={fgaNews[0].title}/> : null }
                </div>
@@ -65,23 +63,7 @@ function Dashboard() {
                </div>
             </div>
             <div className={`${styles.columnContent} ${styles.square}`}>
-               <h3>Matérias inscritas</h3>
-               <FormControl sx={{ m: 1, minWidth: 120}}>
-                  <Select
-                     sx={{height: 30, borderRadius: 20}}
-                     className={styles.selectSemester}
-                     value={age}
-                     displayEmpty
-                     onChange={handleChange}
-                  >
-                     <MenuItem value="">
-                        Semestre atual
-                     </MenuItem>
-                     <MenuItem value={10}>1°/2023</MenuItem>
-                     <MenuItem value={20}>2°/2022</MenuItem>
-                     <MenuItem value={30}>1°/2022</MenuItem>
-                  </Select>
-               </FormControl>
+               <h3 style={{marginBottom: "1.5em"}}>Matérias inscritas</h3>
                { user.subjects?.length > 0 ? user.subjects.map((enroll) => 
                   <Link to={`/subject/${enroll.subject.id}`} style={{ textDecoration: 'none' }}>
                      <Card name={enroll.subject.name} description={enroll.subject.description}/>
@@ -90,7 +72,7 @@ function Dashboard() {
                }
             </div>
             <div className={`${styles.columnContent} ${styles.square}`}>
-               <h3>Minhas tarefas</h3>  
+               <h3>Minhas tarefas</h3>
                <TaskList/>
             </div>
          </section>

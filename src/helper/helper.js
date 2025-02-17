@@ -290,7 +290,6 @@ export async function enroll({ userId, subjectId }){
 }
 
 /** unenroll user from subject */
-
 export async function unenroll({ subjectId }){
     console.log('subjectId: ', subjectId);
     try {
@@ -308,7 +307,6 @@ export async function unenroll({ subjectId }){
 }
 
 /* get rank list */
-
 export async function getRankList(){
 
     try {
@@ -321,6 +319,67 @@ export async function getRankList(){
         );
         
        return { data };
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+/* get user tasks */
+export async function getUserTasks(){
+
+    try {
+       const { data } = await axios.get('/todos',
+        {
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            }
+        }
+        );
+        
+       return { data };
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+/* create user tasks */
+export async function createUserTasks({ title, description }){
+
+    try {
+       const { data } = await axios.post('/todos',
+        {
+            title,
+            description
+        },
+        {
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            }
+        }
+        );
+        
+       return { data };
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
+/* update user tasks */
+export async function updateTask(todoId){
+
+    try {
+       const res = await axios.patch(`/todos/${todoId}`,
+        {
+            done: true
+        },
+        {
+            headers : {
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            }
+        }
+        );
+        
+       return res;
     } catch (error) {
         return Promise.reject(error);
     }
