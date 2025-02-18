@@ -6,8 +6,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { createPost } from "../../helper/helper"
 
-function PostFormDialog() {
+function PostFormDialog(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -20,7 +21,7 @@ function PostFormDialog() {
 
   return (
     <React.Fragment>
-      <Button variant='contained' onClick={handleClickOpen}>
+      <Button variant='contained' onClick={handleClickOpen} style={{bottom: "3.4em", float: 'right', marginRight: "1.3rem"}}>
         Nova postagem
       </Button>
       <Dialog
@@ -30,10 +31,15 @@ function PostFormDialog() {
           component: 'form',
           onSubmit: (event) => {
             event.preventDefault();
+            console.log('subjectId: ', props.subjectId);
             const formData = new FormData(event.currentTarget);
             const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
-            console.log(email);
+            createPost(formJson.title, formJson.content, props.subjectId).then(res => {
+              console.log("res.data getPost: ", res.data);
+              if(res.data){
+                props.updatePosts();
+              }
+           });
             handleClose();
           },
         }}
@@ -58,8 +64,8 @@ function PostFormDialog() {
             autoFocus="false"
             required
             margin="dense"
-            id="description"
-            name="description"
+            id="content"
+            name="content"
             label="Descrição"
             type="text"
             fullWidth

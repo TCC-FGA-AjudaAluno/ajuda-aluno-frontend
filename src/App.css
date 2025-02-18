@@ -1,5 +1,5 @@
 ::-webkit-scrollbar {
-    width: 4px;
+    width: 2px;
 }
 
 ::-webkit-scrollbar-track {
@@ -16,5 +16,5 @@
 }
 
 ::-webkit-scrollbar:horizontal{
-    height: 4px;
+    height: 2px;
 }
