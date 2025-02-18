@@ -9,12 +9,19 @@ import { fetchFgaNews } from "../../helper/scraper.js";
 import React from 'react'
 import { getSubjectByUser } from "../../helper/helper"
 import TaskList from '../../components/TaskList/index.jsx'
+import PopChat from '../../components/Chat'
 
 
 function Dashboard() {
+
    const [age, setAge] = React.useState('');
    const [taskStatus, setTaskStatus] = React.useState('in_progress');
    const [fgaNews, setFgaNews] = React.useState([]);
+
+
+   const getMessage = (msg) => {
+      console.log("teste menssagem",msg)
+   }
 
    const handleChange = (event) => {
       setAge(event.target.value);
@@ -101,6 +108,10 @@ function Dashboard() {
                   </Select>
                </FormControl>
               <TaskList/>
+              <div>
+              <PopChat messages={msgs} getMessage={getMessage} />
+              </div>
+              
             </div>
          </section>
          <Footer />

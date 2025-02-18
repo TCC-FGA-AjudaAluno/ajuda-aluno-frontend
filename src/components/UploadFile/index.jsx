@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,73 +11,145 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { getMaterials } from '../../helper/helper'; //trocar para funcao GET listar todos os materiais da materia
+import { useLocation } from 'react-router-dom';
 
 
-const columns = [
-  { id: 'file', label: 'Arquivo', minWidth: 170 },
-  { id: 'date', label: 'Data', minWidth: 170 }
-];
+  
+const UploadFile = () => {
+  var teste = {};
+  const location = useLocation()
+  const pathname = location.pathname;
+  const [files, setFiles] = useState([]); // Armazenar múltiplos arquivos
+  // Definindo o estado para título e descrição
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
 
-function createData(file, date) {
-  return {file, date};
-}
-
-function UploadFile() {
-  const [data, setData] = React.useState([]);
-
-  const fetchMaterials = () =>{
-    var materials = [];
-    setData(materials);
-      /* chamada da rota de listar todos os materias de materia po id da materia
-      getMaterials().then((res) => {
-        materials.push(createData(nome_arquivo, data_de_envio));
-        setData(materials);
-    });
-    */
-  }
-
-  const handleChangePage = (event, newPage) => {
-    
+  // Função para atualizar o título
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
   };
 
-  const handleChangeRowsPerPage = (event) => {
-    
+  // Função para atualizar a descrição
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
   };
 
-  React.useEffect(() => {
-   fetchMaterials();
-  }, []);
+  // Função para capturar os arquivos selecionados
+  const handleFileChange = (e) => {
+    setFiles(e.target.files);  // Pega todos os arquivos selecionados
+  };
 
-  const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 20,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-  });
+
+  const subjectid = pathname.split('/').filter(Boolean).pop();
+
+
+  // Função para enviar os arquivos
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (files.length === 0) {
+      alert("Selecione pelo menos um arquivo para enviar!");
+      return;
+    }
+
+    const formData = new FormData();
+    // Adiciona todos os arquivos ao FormData
+      formData.append("subjectId", subjectid);
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("file", files[0]);
+    
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);  // Logando chave e valor
+      }
+
+    try {
+      console.log('token: ', localStorage.getItem('token'));
+   
+
+      const response = await fetch("http://localhost:3000/materials", {
+        method: "POST",
+        headers : {"Authorization": `Bearer ${localStorage.getItem('token')}`,
+        'Accept': 'application/json',
+      } ,
+        body:formData,
+     
+      });
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Erro na requisição:", errorText); // Exibe erro no console
+        throw new Error("Erro na requisição: " + errorText);
+      }
+
+      
+      if (response.ok) {
+        alert("Arquivos enviados com sucesso!");
+      } else {
+        alert("Erro ao enviar os arquivos.");
+      }
+    } catch (error) {
+      console.error("Erro de envio:", error);
+      alert("Erro ao enviar os arquivos.");
+    }
+  };
+
+  // Função para abrir a caixa de seleção de arquivos
+  const handleClick = () => {
+    document.getElementById('fileInput').click();  // Aciona o clique no input invisível
+  };
 
   return (
     <div>
-      <Button
-          component="label"
-          role={undefined}
-          variant="contained"
-          tabIndex={-1}
-          startIcon={<CloudUploadIcon  />}
-      >
-          Enviar arquivos
-          <VisuallyHiddenInput
-            type="file"
-            onChange={(event) => console.log(event.target.files)}
-            multiple
+     
+
+      <h2>Upload de Arquivos</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="title">Nome do arquivo:</label>
+          <input
+            id="title"
+            type="text"
+            value={title}
+            onChange={handleTitleChange}  // Atualiza o título
+            placeholder="Digite o título"
           />
-      </Button>
+        </div>
+
+        <div>
+          <label htmlFor="description">Descrição do arquivo:</label>
+          <textarea
+            id="description"
+            value={description}
+            onChange={handleDescriptionChange}  // Atualiza a descrição
+            placeholder="Digite a descrição"
+          />
+        </div>
+ 
+        {/* Botão customizado */}
+        <button type="button" onClick={handleClick}>Selecionar Arquivos</button>
+
+        {/* Input de arquivo invisível */}
+        <input
+          id="fileInput"
+          type="file"
+          multiple
+          style={{ display: 'none' }}  // Esconde o input de arquivo
+          onChange={handleFileChange}
+        />
+        
+        <button type="submit">Enviar</button>
+        </form>
+
+      <div>
+        <h3>Arquivos Selecionados:</h3>
+        <ul>
+          {Array.from(files).map((file, index) => (
+            <li key={index}>{file.name}</li>  // Exibe o nome de cada arquivo selecionado
+          ))}
+        </ul>
+      </div>
     </div>
   );
-}
+};
 
-export default UploadFile
+export default UploadFile;
