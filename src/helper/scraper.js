@@ -22,15 +22,20 @@ export async function fetchSemesterDuration(){
       var semesterDuration = 0;
       var currentYear = new Date().getFullYear();
       const currentDate = new Date().getTime();
+      /*
       const response = await axios.get('https://saa.unb.br/graduacao/calendario-academico');
       const $ = cheerio.load(response.data);
       $(`#periodos-letivos-de-${currentYear} tbody tr`).toArray()
       .forEach((key, index) => {
          if (index === 1 || index === 2) {
             //currentYearSemesters.push(key.children[3].children[0].data);
+            console.log('currentYearSemesters: ', key.children[5].children[0].data);
             currentYearSemesters.push(key.children[5].children[0].data);
          }
       });
+      */
+
+      currentYearSemesters.push('26/07/2025');
 
       if(currentDate < formatDate(currentYearSemesters[0])){
          semesterDuration = convertMilisecondsToDays(formatDate(currentYearSemesters[0]) - currentDate);

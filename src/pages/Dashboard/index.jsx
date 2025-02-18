@@ -6,10 +6,9 @@ import News from '../../components/News'
 import Card from '../../components/Card'
 import { fetchFgaNews } from "../../helper/scraper.js";
 import React from 'react'
-import { getSubjectByUser, getUser } from "../../helper/helper"
+import { getUser } from "../../helper/helper"
 import TaskList from '../../components/TaskList/index.jsx'
 import { Link } from 'react-router-dom'
-import { MenuItem } from '@mui/material'
 
 
 function Dashboard() {
