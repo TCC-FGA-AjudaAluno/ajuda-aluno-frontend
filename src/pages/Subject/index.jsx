@@ -6,6 +6,7 @@ import News from '../../components/News'
 import Card from '../../components/Card'
 import React from 'react'
 import MaterialTable from '../../components/UploadFile'
+import DownloadFile from '../../components/DownloadFile'
 
 import "../../../node_modules/@syncfusion/ej2-base/styles/material.css";
 import "../../../node_modules/@syncfusion/ej2-buttons/styles/material.css";
@@ -82,6 +83,8 @@ function Subject() {
             <div className={`${styles.columnContent} ${styles.rect}`}>
                <h3>Materiais</h3>
                <MaterialTable/>
+               <DownloadFile/>
+            
             </div>
             <div className={`${styles.columnContentPost} ${styles.square}`}>
                <div>
@@ -122,11 +125,6 @@ function Subject() {
                   description: { name: 'description' },
                   startTime: { name: 'starttime' },
                   endTime: { name: 'endtime' },
-                  startTimezone: { name: 'starttimezone' },
-                  endTimezone: { name: 'endtimezone' },
-                  recurrenceID: {name:'recurrenceid'},
-                  recurrenceRule:{name:'recurrencerule'},
-                  recurrenceException: {name:'recurrenceexception'},
                   followingID:{name:'followingid'}
                   } }}>
               <Inject services={[Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop]}/>
