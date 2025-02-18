@@ -37,12 +37,15 @@ img {
 }
 
 .card_title {
+   width: 100%;
+   display: flex;
    text-align: center;
    text-decoration: underline;
    font-size: 15px;
    font-weight: 800;
    word-wrap: break-word;
-   padding: 15px 18px 6px 18px;
+   padding: 0px 18px 6px 18px;
+   justify-content: center;
 }
 
 .card_btn {
@@ -74,15 +77,31 @@ img {
    padding-left: 0.75rem;
    padding-right: 0.75rem;
    padding-bottom: 0.1rem;
-   margin-left: 25px;
+   margin-left: 10px;
    border-width: 0.125rem;
    justify-content: center;
    flex-direction: row;
    display: inline-flex;
    position: relative;
-   color: white;
-   background: rgba(0, 0, 0, 0.54);
    border-radius: 999px;
+}
+
+.like_btn {
+   height: 25px;  
+   padding-left: 0.75rem;
+   padding-right: 0.75rem;
+   padding-bottom: 0.1rem;
+   margin-left: 23px;
+   border-width: 0.125rem;
+   justify-content: center;
+   flex-direction: row;
+   display: inline-flex;
+   position: relative;
+   border-radius: 999px;
+}
+
+.like_btn:hover {
+   background-color: var(--grayishBlue);
 }
 
 .comment_btn:hover {
@@ -93,5 +112,3 @@ img {
    display: flex;
    align-items: center;
 }
-
-

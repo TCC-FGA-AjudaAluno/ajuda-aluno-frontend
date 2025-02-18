@@ -21,7 +21,7 @@ function PostFormDialog(props) {
 
   return (
     <React.Fragment>
-      <Button variant='contained' onClick={handleClickOpen} style={{bottom: "5em", float: 'right', marginRight: "1rem"}}>
+      <Button variant='contained' onClick={handleClickOpen} style={{bottom: "3.4em", float: 'right', marginRight: "1.3rem"}}>
         Nova postagem
       </Button>
       <Dialog

@@ -384,3 +384,44 @@ export async function updateTask(todoId){
         return Promise.reject(error);
     }
 }
+
+/* get subject events */
+export async function getSubjectEvents(subjectId) {  
+    try {
+        const { data } = await axios.get("/events", {
+            params: { subjectId }, 
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+
+        return { data };
+    } catch (error) {
+        console.error("Error fetching events:", error);
+        throw error;
+    }
+}
+
+/* get subject events */
+export async function createSubjectEvents(event) {  
+    try {
+        const { data } = await axios.post("/events", {
+            subjectId: event.subjectId,
+            title: event.title,
+            description: event.description,
+            start: event.start.toString(),
+            end: event.end.toString(),
+            location: event.location
+        },
+        { 
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+
+        return { data };
+    } catch (error) {
+        console.error("Error fetching events:", error);
+        throw error;
+    }
+}
