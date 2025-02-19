@@ -8,6 +8,7 @@ import { fetchFgaNews } from "../../helper/scraper.js";
 import React from 'react'
 import { getUser } from "../../helper/helper"
 import TaskList from '../../components/TaskList/index.jsx'
+import PopChat from '../../components/Chat'
 import { Link } from 'react-router-dom'
 
 
@@ -15,6 +16,11 @@ function Dashboard() {
    const [user, setUser] = React.useState({});
    const [age, setAge] = React.useState('');
    const [fgaNews, setFgaNews] = React.useState([]);
+
+
+   const getMessage = (msg) => {
+      console.log("teste menssagem",msg)
+   }
 
    const fetchUser = async () =>{
       getUser({
@@ -72,6 +78,11 @@ function Dashboard() {
             </div>
             <div className={`${styles.columnContent} ${styles.square}`}>
                <h3>Minhas tarefas</h3>
+
+               <div>
+                 <PopChat  />
+               </div>
+              
                <TaskList/>
             </div>
          </section>
