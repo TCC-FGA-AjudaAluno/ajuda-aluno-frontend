@@ -30,7 +30,7 @@ export function PostList({subjectId}) {
          <PostFormDialog subjectId={subjectId} updatePosts={fetchPosts}/>
          <div>
             { posts.length > 0 ? posts.map((post) => 
-               <Post id={post.id} name={post.title} description={post.content} comments={post.comments}/>
+               <Post post={post} updatePosts={fetchPosts}/>
                ) : <div></div>
             }
          </div>

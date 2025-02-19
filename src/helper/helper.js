@@ -425,3 +425,41 @@ export async function createSubjectEvents(event) {
         throw error;
     }
 }
+
+/* upvote a post */
+export async function upvotePost(postId) {  
+    try {
+        const { data } = await axios.post("/votes/upvotes", {
+            postId
+        },
+        { 
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+
+        return { data };
+    } catch (error) {
+        console.error("Error fetching events:", error);
+        throw error;
+    }
+}
+
+/* downvote a post */
+export async function downvotePost(postId) {  
+    try {
+        const { data } = await axios.post("/votes/downvotes", {
+            postId
+        },
+        { 
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+
+        return { data };
+    } catch (error) {
+        console.error("Error fetching events:", error);
+        throw error;
+    }
+}

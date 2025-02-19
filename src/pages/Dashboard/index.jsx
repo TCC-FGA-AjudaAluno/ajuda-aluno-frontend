@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styles from './Dashboard.module.css'
 import Footer from "../../components/Footer"
 import Topbar from '../global/Topbar/Topbar'
@@ -8,9 +9,6 @@ import { fetchFgaNews } from "../../helper/scraper.js";
 import React from 'react'
 import { getUser } from "../../helper/helper"
 import TaskList from '../../components/TaskList/index.jsx'
-import PopChat from '../../components/Chat'
-import { Link } from 'react-router-dom'
-
 
 function Dashboard() {
    const [user, setUser] = React.useState({});
@@ -82,7 +80,6 @@ function Dashboard() {
                <div>
                  <PopChat  />
                </div>
-              
                <TaskList/>
             </div>
          </section>
@@ -91,4 +88,6 @@ function Dashboard() {
    )
 }
 
+
 export default Dashboard
+
