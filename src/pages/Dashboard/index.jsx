@@ -9,10 +9,6 @@ import React from 'react'
 import { getUser } from "../../helper/helper"
 import TaskList from '../../components/TaskList/index.jsx'
 import PopChat from '../../components/Chat'
-
-
-function Dashboard() {
-
 import { Link } from 'react-router-dom'
 
 
@@ -24,6 +20,8 @@ function Dashboard() {
 
    const getMessage = (msg) => {
       console.log("teste menssagem",msg)
+   }
+
    const fetchUser = async () =>{
       getUser({
          id : JSON.parse(localStorage.getItem('user')).id,
@@ -82,7 +80,7 @@ function Dashboard() {
                <h3>Minhas tarefas</h3>
 
                <div>
-                 <PopChat messages={msgs} getMessage={getMessage} />
+                 <PopChat  />
                </div>
               
                <TaskList/>
