@@ -21,3 +21,21 @@
    margin-left: .5rem;
    margin-right: .5rem;
 }
+
+.comment_btn {
+   height: 25px;  
+   padding-left: 0.75rem;
+   padding-right: 0.75rem;
+   padding-bottom: 0.1rem;
+   border-width: 0.125rem;
+   justify-content: center;
+   flex-direction: row;
+   display: inline-flex;
+   position: relative;
+   border-radius: 999px;
+}
+
+.comment_btnIcons {
+   display: flex;
+   align-items: center;
+}
