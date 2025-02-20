@@ -61,7 +61,7 @@ const DownloadFile = () => {
 
     setLoading(true);
     setError('');
-    console.log("file",filename)
+   
     try {
       // Requisição para pegar o arquivo
       const response = await axios.get(`http://localhost:3000/materials/${filename}`, { headers : {

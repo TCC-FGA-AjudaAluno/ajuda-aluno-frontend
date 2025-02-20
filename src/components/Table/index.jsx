@@ -35,7 +35,6 @@ function StickyHeadTable() {
   const fetchUsers = () =>{
     var users = [];
     getRankList().then((res) => {
-      console.log('res: ', res.data);
       res.data.forEach(function(user) {
          users.push(createData(user.position, user.name, user.course, user.points));
       });

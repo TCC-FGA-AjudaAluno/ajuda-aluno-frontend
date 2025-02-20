@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { getMaterials } from '../../helper/helper'; //trocar para funcao GET listar todos os materiais da materia
+import { getMaterials, Toast } from '../../helper/helper'; //trocar para funcao GET listar todos os materiais da materia
 import { useLocation } from 'react-router-dom';
 import styles from './UploadFile.module.css'
 
@@ -65,9 +65,6 @@ const UploadFile = () => {
       }
 
     try {
-      console.log('token: ', localStorage.getItem('token'));
-   
-
       const response = await fetch("http://localhost:3000/materials", {
         method: "POST",
         headers : {"Authorization": `Bearer ${localStorage.getItem('token')}`,
@@ -84,6 +81,10 @@ const UploadFile = () => {
 
       
       if (response.ok) {
+        Toast.fire({
+          icon: "success",
+          title: "Você ganhou +10 pontos!!"
+        });
         alert("Arquivos enviados com sucesso!");
       } else {
         alert("Erro ao enviar os arquivos.");

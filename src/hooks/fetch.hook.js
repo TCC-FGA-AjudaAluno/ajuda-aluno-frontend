@@ -43,8 +43,6 @@ export function useAsync(func, dependencies = []){
         execute();
     }, [execute]);
 
-    console.log("state: ", state);
-
     return state;
 }
 

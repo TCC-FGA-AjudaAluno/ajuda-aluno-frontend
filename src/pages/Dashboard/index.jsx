@@ -15,10 +15,10 @@ function Dashboard() {
    const [user, setUser] = React.useState({});
    const [age, setAge] = React.useState('');
    const [fgaNews, setFgaNews] = React.useState([]);
+   const [reload, setReload] = React.useState(false);
 
-
-   const getMessage = (msg) => {
-      console.log("teste menssagem",msg)
+   const updateDashboard = (update) => {
+      setReload(true);
    }
 
    const fetchUser = async () =>{
@@ -81,7 +81,7 @@ function Dashboard() {
                <div>
                  <PopChat  />
                </div>
-               <TaskList/>
+               <TaskList updateUser={fetchUser}/>
             </div>
          </section>
          <Footer />

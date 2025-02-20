@@ -77,7 +77,6 @@ function Home() {
       validateOnBlur: false,
       validateOnChange: false,
       onSubmit : async values => {
-         console.log("aquii",values);
          let registerPromise = registerUser(values)
          toast.promise(registerPromise, {
            loading: 'Creating...',
@@ -100,7 +99,6 @@ function Home() {
       validateOnBlur: false,
       validateOnChange: false,
       onSubmit : async values => {
-         console.log('onSubmit values: ', values);
          setUsername(values.username)
 
          let loginPromise = verifyPassword(localStorage.getItem('token'))
@@ -112,8 +110,6 @@ function Home() {
 
          loginPromise.then(res => {
             let { token, user } = res.data;
-            console.log('RES TOKEN: ', token);
-            console.log("Limpando localStorage");
             localStorage.clear();
             localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(user));

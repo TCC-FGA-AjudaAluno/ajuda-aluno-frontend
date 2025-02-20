@@ -4,15 +4,18 @@ import { BsChat } from "react-icons/bs";
 import styles from './Post.module.css'
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
-import { downvotePost, upvotePost } from '../../helper/helper';
+import { downvotePost, Toast, upvotePost } from '../../helper/helper';
 
 function Post(props) {
-   console.log("Post props: ", props);
  
   const handleLikeClick = () => {
       if(props.post.vote === null || props.post.vote === "DOWNVOTE"){
          upvotePost(props.post.id).then((res) => {
             if(res.data){
+               Toast.fire({
+                  icon: "success",
+                  title: "Você ganhou +1 ponto!!"
+               });
                props.updatePosts();
             } 
          });

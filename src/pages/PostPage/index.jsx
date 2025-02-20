@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import styles from './PostPage.module.css'
 import { CommentList } from '../../components/CommentList';
 import Footer from '../../components/Footer';
-import { createPostComment, getPost } from '../../helper/helper';
+import { createPostComment, getPost, Toast } from '../../helper/helper';
 
 function PostPage() {
 
@@ -25,6 +25,10 @@ function PostPage() {
       setLoading(true);
       createPostComment({ content: message, postId: post.id }).then(res => {
          if(res.data){
+            Toast.fire({
+               icon: "success",
+               title: "Você ganhou +3 pontos!!"
+             });
             fetchPost();
          }
       });

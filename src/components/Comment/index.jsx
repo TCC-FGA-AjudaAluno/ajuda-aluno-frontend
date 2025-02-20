@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import { BiLike } from "react-icons/bi";
 import styles from './Comment.module.css'
-import { downvoteComment, upvoteComment } from '../../helper/helper';
+import { downvoteComment, Toast, upvoteComment } from '../../helper/helper';
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {
    dateStyle: "medium",
@@ -9,11 +9,14 @@ const dateFormatter = new Intl.DateTimeFormat(undefined, {
 })
 
 export function Comment (props) {
-   console.log("props Comment: ", props.comment);
    const handleLikeClick = () => {
       if(props.comment.vote === null || props.comment.vote === "DOWNVOTE"){
          upvoteComment(props.comment.id).then((res) => {
             if(res.data){
+               Toast.fire({
+                  icon: "success",
+                  title: "Você ganhou +1 ponto!!"
+               });
                props.updatePostPage();
             } 
          });
