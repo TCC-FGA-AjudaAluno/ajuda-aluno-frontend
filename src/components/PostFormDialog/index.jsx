@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { createPost } from "../../helper/helper"
+import { createPost, Toast } from "../../helper/helper"
 
 function PostFormDialog(props) {
   const [open, setOpen] = React.useState(false);
@@ -31,12 +31,14 @@ function PostFormDialog(props) {
           component: 'form',
           onSubmit: (event) => {
             event.preventDefault();
-            console.log('subjectId: ', props.subjectId);
             const formData = new FormData(event.currentTarget);
             const formJson = Object.fromEntries(formData.entries());
             createPost(formJson.title, formJson.content, props.subjectId).then(res => {
-              console.log("res.data getPost: ", res.data);
               if(res.data){
+                Toast.fire({
+                  icon: "success",
+                  title: "Você ganhou +7 pontos!!"
+                });
                 props.updatePosts();
               }
            });

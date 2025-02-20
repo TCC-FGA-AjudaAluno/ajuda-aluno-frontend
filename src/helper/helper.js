@@ -1,7 +1,20 @@
 import axios from 'axios';
 import {InvalidTokenError, jwtDecode } from 'jwt-decode';
+import Swal from 'sweetalert2';
 
 axios.defaults.baseURL = process.env.REACT_APP_SERVER_DOMAIN;
+
+export const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
+});
 
 /** To get username from Token */
 export async function getUsername(){
@@ -92,7 +105,6 @@ export async function getAllSubject(){
         });
         return { data } ;
     } catch (error) {
-        console.log("Error getAllSubject: ", error);
         return { error : "Subject doesn't Match...!"}
     }
 }
@@ -158,7 +170,6 @@ export async function registerUser(credentials){
 export async function verifyPassword(token){
     try {
         if(token){
-            console.log('token: ', token);
             const { data } = await axios.post('/auth/introspect', { token });
             return Promise.resolve({ data });
         }
@@ -221,10 +232,6 @@ export async function resetPassword({ username, password }){
 
 /** create a post on subject */
 export async function createPost(title, content, subjectId){
-    console.log('token: ', localStorage.getItem('token'));
-    console.log('subjectId: ', subjectId);
-    console.log('content: ', content);
-    console.log('postId: ', title);
 
     try {
         const { data } = await axios.post(`/subjects/${subjectId}/posts`, { 
@@ -245,9 +252,6 @@ export async function createPost(title, content, subjectId){
 
 /** create a comment on a post */
 export async function createPostComment({ content, postId }){
-    console.log('token: ', localStorage.getItem('token'));
-    console.log('content: ', content);
-    console.log('postId: ', postId);
 
     try {
         const { data } = await axios.post('/comments', { 
@@ -268,8 +272,6 @@ export async function createPostComment({ content, postId }){
 
 /** enroll user in subject */
 export async function enroll({ userId, subjectId }){
-    console.log('userId: ', userId);
-    console.log('subjectId: ', subjectId);
 
     try {
        const { data } = await axios.post('/subjects/enroll', { 
@@ -291,7 +293,6 @@ export async function enroll({ userId, subjectId }){
 
 /** unenroll user from subject */
 export async function unenroll({ subjectId }){
-    console.log('subjectId: ', subjectId);
     try {
        const res = await axios.delete(`/subjects/${subjectId}/enroll`,
         {

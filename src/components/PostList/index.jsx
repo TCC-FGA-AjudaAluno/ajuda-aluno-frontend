@@ -10,9 +10,7 @@ export function PostList({subjectId}) {
    const [posts, setPosts] = useState([]);
 
    const fetchPosts = () => {
-      console.log('subjectId PostList: ', subjectId);
       getSubjectPosts(subjectId).then(res => {
-         console.log("res.data getSubjectPosts: ", res.data);
          if (res.data && res.data.length > 0) {
             setPosts(res.data);
          }else{

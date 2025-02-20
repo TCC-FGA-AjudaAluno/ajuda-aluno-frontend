@@ -11,7 +11,7 @@ export function usePost() {
 }
 
 export function PostProvider({ children }) {
-   console.log("entrou no provider")
+   
    const { id } = useParams();
    const { loading, error, value: post } = useAsync(() => getPosts(id), [id]);
    const [comments, setComments] = React.useState([]);

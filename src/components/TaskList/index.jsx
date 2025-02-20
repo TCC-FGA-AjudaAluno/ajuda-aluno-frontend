@@ -3,13 +3,11 @@ import styles from './TaskList.module.css'
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormControl, MenuItem, Select, TextField } from '@mui/material'
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import { IconButton } from "@mui/material"
-import { createUserTasks, getUserTasks, updateTask } from '../../helper/helper';
+import { createUserTasks, getUserTasks, Toast, updateTask } from '../../helper/helper';
 
 
 
 function TaskList(props) {
-
-   //console.log(props.tasks)
 
    const [tasks, setTasks] = React.useState([]);
    const [tasksDone, setTasksDone] = React.useState([]);
@@ -35,10 +33,14 @@ function TaskList(props) {
    }
 
    const updateTaskDone = (taskId) => {
-      console.log('taskId: ', taskId);
       updateTask(taskId).then((res) => {
          if(res.status === 200){
+            Toast.fire({
+               icon: "success",
+               title: "Você ganhou +5 pontos!!"
+            });
             setUpdatePage(true);
+            props.updateUser();
          }
       });
    }
@@ -53,9 +55,6 @@ function TaskList(props) {
    }
 
    const filterUserTasks = (tasks, status) => {
-      console.log("status: ", status);
-      console.log("tasks: ", tasks);
-
       return tasks.filter((task) => task.done === status);
    }
 
@@ -86,7 +85,6 @@ function TaskList(props) {
                         const formJson = Object.fromEntries(formData.entries());
                         
                         createUserTasks({ title: formJson.title, description: formJson.description }).then(res => {
-                        console.log("res.data createUserTasks: ", res.data);
                         if(res.data){
                            fetchUserTasks();
                         }

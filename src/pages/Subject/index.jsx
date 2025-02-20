@@ -18,7 +18,7 @@ import "../../../node_modules/@syncfusion/ej2-schedule/styles/material.css";
 import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, Inject, Resize, DragAndDrop, popupOpen, actionBegin } from '@syncfusion/ej2-react-schedule';
 import { FormControl, MenuItem, Select } from '@mui/material'
 import { useParams } from 'react-router-dom'
-import { createSubjectEvents, enroll, getSubject, getSubjectEvents, getUser, unenroll } from '../../helper/helper'
+import { createSubjectEvents, enroll, getSubject, getSubjectEvents, getUser, Toast, unenroll } from '../../helper/helper'
 import { PostList } from '../../components/PostList'
 import Swal from 'sweetalert2'
 
@@ -27,7 +27,6 @@ import Swal from 'sweetalert2'
 function Subject() {
    
    var { id } = useParams();
-   console.log("Subject id:", id);
   
    const [subject, setSubject] = React.useState({});
    const [user, setUser] = React.useState({});
@@ -37,19 +36,6 @@ function Subject() {
    const [subjectEvents, setSubjectEvents] = React.useState([]);
    const scheduleObj = React.useRef(null);
    const [isOpen, setIsOpen] = useState(false);
-
-   const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.onmouseenter = Swal.stopTimer;
-        toast.onmouseleave = Swal.resumeTimer;
-      }
-    });
-
 
    const togglePop = () => {
       setIsOpen(!isOpen);
@@ -69,12 +55,9 @@ function Subject() {
   }
 
    const onActionBegin = (args) => {
-    console.log("args:", args);
       
       if (args.requestType === 'eventCreate' || args.requestType === 'eventChange') {
-         console.log("caiu no if 1 validacao");
         if (!args.data[0].location || args.data[0].location.trim() === '') {
-          console.log("caiu no if 2 validacao");
           args.cancel = true; 
           Toast.fire({
             icon: "error",
@@ -90,6 +73,10 @@ function Subject() {
        }else{
          createSubjectEvents({event: args.data[0], subjectId: id}).then((res) => {
             if (res.data){
+               Toast.fire({
+                  icon: "success",
+                  title: "Você ganhou +18 pontos!!"
+                });
                setLoading(false);
             }
          });
@@ -101,7 +88,6 @@ function Subject() {
       const appointment = "e-appointment e-lib e-draggable e-appointment-border";
         
       if ((args.type === "QuickInfo") && (args.target.className !== appointment)) {
-         console.log("caiu quick info:", args.target.className);
          args.cancel = true; 
          scheduleObj.current.openEditor(args.data, "Add"); 
       }
@@ -173,8 +159,6 @@ function Subject() {
    }
 
    const verifySubscription = () => {
-      console.log('user dentro da tela de Subject: ', user);
-      console.log('Subject: ', subject);
       
       if(user.subjects?.length > 0 && user.subjects.filter((enroll) => {
          return enroll.subject.id === subject.id
@@ -189,7 +173,6 @@ function Subject() {
    }
 
    React.useEffect(() => { 
-      console.log("renderizou matéria");
       fetchSubject();
     }, [id, loading])
 
