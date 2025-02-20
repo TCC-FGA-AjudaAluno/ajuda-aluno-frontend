@@ -181,7 +181,6 @@ function Home() {
                      <Components.Title style={{marginBottom: "40px"}}>Sign in</Components.Title>
                      <Components.Input {...formikUser.getFieldProps('username')} type='text' placeholder='Email' />
                      <Components.Input {...formikUser.getFieldProps('password')} type='password' placeholder='Senha' />
-                     <Components.Anchor onClick={toggleOverlayRecovery}  href='#'>Esqueceu sua senha?</Components.Anchor>
                      <Components.Button  type='submit' >Sigin In</Components.Button>
                   </Components.Form>
                </Components.SignInContainer>

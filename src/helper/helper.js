@@ -403,14 +403,15 @@ export async function getSubjectEvents(subjectId) {
 }
 
 /* get subject events */
-export async function createSubjectEvents(event) {  
+export async function createSubjectEvents({event, subjectId}) {  
+ 
     try {
         const { data } = await axios.post("/events", {
-            subjectId: event.subjectId,
+            subjectId,
             title: event.title,
             description: event.description,
-            start: event.start.toString(),
-            end: event.end.toString(),
+            start: event.start,
+            end: event.end,
             location: event.location
         },
         { 

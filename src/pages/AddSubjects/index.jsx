@@ -175,7 +175,6 @@ function AddSubjects() {
                      <Components.Title>Sign in</Components.Title>
                      <Components.Input {...formikUser.getFieldProps('username')} type='text' placeholder='username' />
                      <Components.Input {...formikUser.getFieldProps('password')} type='text' placeholder='Senha' />
-                     <Components.Anchor onClick={toggleOverlayRecovery}  href='#'>Esqueceu sua senha?</Components.Anchor>
                      <Components.Button  type='submit' >Sigin In</Components.Button>
                   </Components.Form>
                </Components.SignInContainer>

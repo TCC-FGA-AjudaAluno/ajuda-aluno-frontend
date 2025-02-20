@@ -15,11 +15,12 @@ import "../../../node_modules/@syncfusion/ej2-inputs/styles/material.css";
 import "../../../node_modules/@syncfusion/ej2-navigations/styles/material.css";
 import "../../../node_modules/@syncfusion/ej2-popups/styles/material.css";
 import "../../../node_modules/@syncfusion/ej2-schedule/styles/material.css";
-import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, Inject, Resize, DragAndDrop, popupOpen } from '@syncfusion/ej2-react-schedule';
+import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, Inject, Resize, DragAndDrop, popupOpen, actionBegin } from '@syncfusion/ej2-react-schedule';
 import { FormControl, MenuItem, Select } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import { createSubjectEvents, enroll, getSubject, getSubjectEvents, getUser, unenroll } from '../../helper/helper'
 import { PostList } from '../../components/PostList'
+import Swal from 'sweetalert2'
 
 
 
@@ -37,6 +38,17 @@ function Subject() {
    const scheduleObj = React.useRef(null);
    const [isOpen, setIsOpen] = useState(false);
 
+   const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
 
 
    const togglePop = () => {
@@ -48,29 +60,42 @@ function Subject() {
 
    const fieldsData = {
       id: 'id',
-      subject: { name: 'title', title: 'Título', placeholder: "Adicione um título"},
+      subject: { name: 'title', title: 'Título', default: ''},
       location: { name: 'location', title: 'Local'},
       description: { name: 'description', title: 'Descrição'},
       startTime: { name: 'start', title: 'Início' },
-      endTime: { name: 'end', title: 'Fim' },
+      endTime: { name: 'end', title: 'Fim'},
       allDay: false
   }
 
-   const saveEventMoreDetails = 'e-schedule-dialog e-control e-btn e-lib e-primary e-event-save e-flat';
-   const closePopup = (args) => {
-      const classNameSave = args.event?.target.className;
-
-      if (classNameSave === saveEventMoreDetails){
-         console.log("clicou pra salvar evento modal detalhada");
-         console.log("args.data: ", args.data);
-         //chama rota POST de salvar monitoria e depois atualiza a página (setLoading(false))
-         createSubjectEvents({...args.data, subjectId: id}).then((res) => {
+   const onActionBegin = (args) => {
+    console.log("args:", args);
+      
+      if (args.requestType === 'eventCreate' || args.requestType === 'eventChange') {
+         console.log("caiu no if 1 validacao");
+        if (!args.data[0].location || args.data[0].location.trim() === '') {
+          console.log("caiu no if 2 validacao");
+          args.cancel = true; 
+          Toast.fire({
+            icon: "error",
+            title: "Insira as informações do local da monitoria!"
+          });
+        }
+        else if (args.data[0].title.trim() === 'Add title') {
+         args.cancel = true; 
+         Toast.fire({
+           icon: "error",
+           title: "Insira o título da monitoria!"
+         });
+       }else{
+         createSubjectEvents({event: args.data[0], subjectId: id}).then((res) => {
             if (res.data){
                setLoading(false);
             }
          });
+       }
       }
-   }
+    };
 
    function onPopupOpen(args) {
       const appointment = "e-appointment e-lib e-draggable e-appointment-border";
@@ -182,9 +207,8 @@ function Subject() {
             </div>
             <section className={styles.container}>
                <div className={`${styles.columnContent} ${styles.rect}`}>
-                  <h4 style={{ 
-                     height: "10px" 
-                     , marginLeft  : "1vw" 
+                  <h3 style={{ 
+                       marginLeft  : "18px" 
                      , paddingBottom: "1vw"
                      }}> Materiais   
                   < CgAddR onClick={togglePop} style={{ 
@@ -196,10 +220,10 @@ function Subject() {
                      , border: "none"
                      , cursor: "pointer"
                      }} /> 
-                  </h4>
+                  </h3>
                {isOpen && (
 
-                  <MaterialTable/>
+                  <MaterialTable />
                )}
                   <DownloadFile/>
                </div>
@@ -214,7 +238,7 @@ function Subject() {
                <div className={`${styles.columnContentMonitoria} ${styles.square}`}>
                   <h3>Monitoria</h3>
                   <div className ={`${styles.schedule} `}> 
-                     <ScheduleComponent ref={scheduleObj} popupOpen={onPopupOpen.bind(this)} popupClose={closePopup} width='100%' height='650px' currentView='Month' eventSettings={{ dataSource: subjectEvents, fields: fieldsData }}>
+                     <ScheduleComponent ref={scheduleObj} popupOpen={onPopupOpen} width='100%' height='650px' currentView='Month' eventSettings={{ dataSource: subjectEvents, fields: fieldsData }} actionBegin={onActionBegin}>
                         <Inject services={[Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop]}/>
                      </ScheduleComponent>
                   </div>

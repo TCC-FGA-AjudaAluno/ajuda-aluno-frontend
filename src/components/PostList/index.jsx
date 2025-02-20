@@ -26,7 +26,7 @@ export function PostList({subjectId}) {
    }, [subjectId])
 
    return (
-      <div>
+      <div style={{marginTop: "2vh"}}>
          <PostFormDialog subjectId={subjectId} updatePosts={fetchPosts}/>
          <div>
             { posts.length > 0 ? posts.map((post) => 
