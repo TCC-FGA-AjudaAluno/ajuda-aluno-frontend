@@ -73,13 +73,13 @@ function Subject() {
    }
 
    function onPopupOpen(args) {
-      const newAppointment = "e-work-cells e-work-days e-selected-cell";
-      if (args.type === "QuickInfo" && args.target.className === newAppointment) {
+      const appointment = "e-appointment e-lib e-draggable e-appointment-border";
+        
+      if ((args.type === "QuickInfo") && (args.target.className !== appointment)) {
          console.log("caiu quick info:", args.target.className);
-         args.cancel = true; // Prevent the default quick popup
-         scheduleObj.current.openEditor(args.data, "Add"); // Directly open the detailed editor
-         
-       }
+         args.cancel = true; 
+         scheduleObj.current.openEditor(args.data, "Add"); 
+      }
       
       if (args.type === 'Editor') {
          if (!args.element.querySelector('.custom-field-row')) {
@@ -186,8 +186,7 @@ function Subject() {
                      height: "10px" 
                      , marginLeft  : "1vw" 
                      , paddingBottom: "1vw"
-                     }}> Materiais 
-               
+                     }}> Materiais   
                   < CgAddR onClick={togglePop} style={{ 
                       color: "#4378b0" 
                      , marginTop: "5px"
@@ -197,13 +196,7 @@ function Subject() {
                      , border: "none"
                      , cursor: "pointer"
                      }} /> 
-                
                   </h4>
-
-
- 
-
-
                {isOpen && (
 
                   <MaterialTable/>

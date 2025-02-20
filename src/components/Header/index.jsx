@@ -5,7 +5,7 @@ function Header(props) {
    return (
       <header className={styles.header}> 
          <Link to={`/${props.path}`}>
-            <span>Ajuda Aluno</span>           
+            <span>AjudaAluno</span>           
          </Link>
       </header>
    )

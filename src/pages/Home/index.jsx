@@ -147,7 +147,7 @@ function Home() {
                <div className={styles.apresentacao}>
                   <p>
                      Bem vindo ao <br />
-                     <span>Ajuda Aluno</span> <br />
+                     <span>AjudaAluno</span> <br />
                   </p>
                   <button className={`${styles.btn} ${styles.btn_blue}`} onClick={toggleOverlay}>
                      Entrar
