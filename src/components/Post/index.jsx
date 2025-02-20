@@ -48,7 +48,7 @@ function Post(props) {
                      </span>
                   </span>
                </Button>
-               <Link to={`/post/${props.id}`} style={{ textDecoration: 'none' }}>
+               <Link to={`/post/${props.post.id}`} style={{ textDecoration: 'none' }}>
                   <Button>
                      <span className={styles.comment_btnIcons}>
                         <span style={{margin: "5px 5px 0px 0px"}}>
