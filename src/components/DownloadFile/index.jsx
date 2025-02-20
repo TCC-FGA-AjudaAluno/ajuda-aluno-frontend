@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import FileDownloadButton from '../../components/DownloadFile'
+import { FiDownload } from "react-icons/fi";
 
 const DownloadFile = () => {
   const [files, setFiles] = useState([]);
@@ -85,21 +86,39 @@ const DownloadFile = () => {
   
   return (
     <div>
-      <h1>Lista de Arquivos</h1>
+      <h1 style={{ 
+                    fontSize: "25px"
+                     }} >Lista de Arquivos</h1>
       <ul>
         {files.map((file) => (
           <li key={file.title} style={{ marginBottom: '10px' }}>
             {/* Exibindo o ícone e o nome do arquivo */}
             <span style={{ marginRight: '10px' }}>
               {renderIcon(file.mimetype)} 
-              <div>
-                <button onClick={() => handleDownload(file.id)} disabled={loading}    >
-                    {loading ? 'Baixando...' : `Baixar Arquivo `}
+              <span style={{ 
+                      marginLeft  : "1vw" 
+                     
+                     }}  >{file.title}</span>
+                <button style={{ 
+                      backgroundColor: "#4378b0" 
+                     , float: "right"
+                     , marginRight  : "2vw" 
+                     , color: "whitesmok"
+                     , border: "none"
+                     , cursor: "pointer"
+                     , borderRadius: "5px"
+                     , width: "33px"
+                     ,fontSize: "20px"
+                     }} 
+                     
+                     onClick={() => handleDownload(file.id)} disabled={loading}    >
+                    {loading ? 'Baixando...' : < FiDownload /> }
                 </button>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
-                </div>
+                
+                
             </span>
-            <span>{file.title}</span>
+           
             
             <div>
             </div>
