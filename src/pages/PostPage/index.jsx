@@ -8,16 +8,12 @@ import { createPostComment, getPost } from '../../helper/helper';
 
 function PostPage() {
 
-   //const { post, comments, createLocalComment } = usePost();
-   //const { loading, error, execute: createCommentFn } = useAsyncFn(createComment);
-
    const [post, setPost] = React.useState({});
    const [comments, setComments] = React.useState([]);
    const [message, setMessage] = React.useState("");
    const [loading, setLoading] = React.useState(false);
 
    var { id } = useParams();
-   console.log("id: ", id);
 
    const dateFormatter = new Intl.DateTimeFormat(undefined, {
       dateStyle: "medium",
@@ -26,10 +22,8 @@ function PostPage() {
    
    const onCommentCreate = (e) => {
       e.preventDefault();
-      console.log("apertou enviar: ", message);
       setLoading(true);
       createPostComment({ content: message, postId: post.id }).then(res => {
-         console.log("res.data getPost: ", res.data);
          if(res.data){
             fetchPost();
          }
@@ -37,9 +31,7 @@ function PostPage() {
    }
    
    const fetchPost = async () => {
-      console.log("entrou no fetchPost");
       getPost(id).then(res => {
-         console.log("res.data getPost: ", res.data);
          setPost(res.data);
          setComments(res.data.comments);
          setLoading(false);
@@ -83,7 +75,7 @@ function PostPage() {
                   </div>
                </form>
                <div className={styles.comment_container}>
-                     <CommentList comments={ comments ?? []}/>
+                     <CommentList comments={ comments ?? []} updatePostPage={fetchPost}/>
                </div>
             </section>
          </div>

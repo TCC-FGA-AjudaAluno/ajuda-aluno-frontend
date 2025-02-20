@@ -17,7 +17,6 @@ function Post(props) {
             } 
          });
       }else{
-         //downvote rota
          downvotePost(props.post.id).then((res) => {
             if(res.data){
                props.updatePosts();
