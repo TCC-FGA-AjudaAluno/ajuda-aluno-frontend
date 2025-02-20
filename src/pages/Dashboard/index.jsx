@@ -9,6 +9,7 @@ import { fetchFgaNews } from "../../helper/scraper.js";
 import React from 'react'
 import { getUser } from "../../helper/helper"
 import TaskList from '../../components/TaskList/index.jsx'
+import PopChat from '../../components/Chat/index.jsx'
 
 function Dashboard() {
    const [user, setUser] = React.useState({});
