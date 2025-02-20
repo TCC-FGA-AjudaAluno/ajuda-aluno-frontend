@@ -38,7 +38,7 @@ function Post(props) {
                </div>
             </Link>
             <div style={{marginLeft: "1.5em"}}>
-               <Button onClick={handleLikeClick} style={props.post.vote === "UPVOTE" ? {backgroundColor: '#1976d2', color: "white"} : {backgroundColor: "white", color: "#1976d2"}}>
+               <Button onClick={handleLikeClick} style={props.post.vote === "UPVOTE" ? { color: "#28a745" } : { color: "#1976d2"}}>
                   <span className={styles.comment_btnIcons}>
                      <span style={{margin: "5px 5px 0px 0px"}}>
                         <BiLike />

@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { getMaterials } from '../../helper/helper'; //trocar para funcao GET listar todos os materiais da materia
 import { useLocation } from 'react-router-dom';
+import styles from './UploadFile.module.css'
 
 
   
@@ -99,14 +100,12 @@ const UploadFile = () => {
   };
 
   return (
-    <div>
-     
-
-      <h2>Upload de Arquivos</h2>
+    <div>      
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="title">Nome do arquivo:</label>
-          <input
+          <label className={styles.labelFile} htmlFor="title">Nome do arquivo:</label>
+       
+          <input className={styles.inputFile}
             id="title"
             type="text"
             value={title}
@@ -116,8 +115,9 @@ const UploadFile = () => {
         </div>
 
         <div>
-          <label htmlFor="description">Descrição do arquivo:</label>
-          <textarea
+          <label className={styles.labelFile} htmlFor="description">Descrição do arquivo:</label>
+          
+          <textarea className={styles.textareaFile}
             id="description"
             value={description}
             onChange={handleDescriptionChange}  // Atualiza a descrição
@@ -126,10 +126,10 @@ const UploadFile = () => {
         </div>
  
         {/* Botão customizado */}
-        <button type="button" onClick={handleClick}>Selecionar Arquivos</button>
+        <button className={styles.buttonSelect} type="button" onClick={handleClick}>Selecionar Arquivos</button>
 
         {/* Input de arquivo invisível */}
-        <input
+        <input 
           id="fileInput"
           type="file"
           multiple
@@ -137,14 +137,14 @@ const UploadFile = () => {
           onChange={handleFileChange}
         />
         
-        <button type="submit">Enviar</button>
+        <button className={styles.buttonSend} type="submit">Enviar</button>
         </form>
 
       <div>
         <h3>Arquivos Selecionados:</h3>
         <ul>
           {Array.from(files).map((file, index) => (
-            <li key={index}>{file.name}</li>  // Exibe o nome de cada arquivo selecionado
+            <li  className={styles.liFile} key={index}>{file.name}</li>  // Exibe o nome de cada arquivo selecionado
           ))}
         </ul>
       </div>

@@ -1,0 +1,86 @@
+
+
+.labelFile {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #444;
+    margin-left: 5px;
+
+}
+
+.inputFile[type="text"] {
+    font-family: monospace;
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.textareaFile {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+
+
+.buttonSelect[type="button"] {
+    display: block;
+    width: 80%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-bottom: 10px;
+    margin-left: 23px;
+
+}
+
+.buttonSelect[type="button"]:hover {
+    background-color: #0056b3;
+}
+
+/* Botão de envio */
+.buttonSend[type="submit"] {
+    display: block;
+    width: 80%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-left: 23px;
+
+}
+
+.buttonSend[type="submit"]:hover {
+    background-color: #1e7e34;
+}
+
+
+.liFile {
+    background: #e9ecef;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    width: 80%;
+    margin-left: 23px;
+
+}

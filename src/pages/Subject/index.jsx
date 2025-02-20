@@ -1,9 +1,11 @@
 import styles from './Subject.module.css'
 import Footer from "../../components/Footer"
 import Topbar from '../global/Topbar/Topbar'
-import React from 'react'
+import React, { useState } from 'react'
 import MaterialTable from '../../components/UploadFile'
 import DownloadFile from '../../components/DownloadFile'
+import { CgAddR } from "react-icons/cg";
+
 
 import "../../../node_modules/@syncfusion/ej2-base/styles/material.css";
 import "../../../node_modules/@syncfusion/ej2-buttons/styles/material.css";
@@ -22,7 +24,7 @@ import { PostList } from '../../components/PostList'
 
 
 function Subject() {
-
+   
    var { id } = useParams();
    console.log("Subject id:", id);
   
@@ -33,6 +35,14 @@ function Subject() {
    const [loading, setLoading] = React.useState(true);
    const [subjectEvents, setSubjectEvents] = React.useState([]);
    const scheduleObj = React.useRef(null);
+   const [isOpen, setIsOpen] = useState(false);
+
+
+
+   const togglePop = () => {
+      setIsOpen(!isOpen);
+    };
+
 
    var data = [];
 
@@ -172,8 +182,32 @@ function Subject() {
             </div>
             <section className={styles.container}>
                <div className={`${styles.columnContent} ${styles.rect}`}>
-                  <h3>Materiais</h3>
+                  <h4 style={{ 
+                     height: "10px" 
+                     , marginLeft  : "1vw" 
+                     , paddingBottom: "1vw"
+                     }}> Materiais 
+               
+                  < CgAddR onClick={togglePop} style={{ 
+                      color: "#4378b0" 
+                     , marginTop: "5px"
+                     , float: "right"
+                     , marginRight  : "2vw" 
+                     , color: "whitesmok"
+                     , border: "none"
+                     , cursor: "pointer"
+                     }} /> 
+                
+                  </h4>
+
+
+ 
+
+
+               {isOpen && (
+
                   <MaterialTable/>
+               )}
                   <DownloadFile/>
                </div>
                <div className={`${styles.columnContentPost} ${styles.square}`}>
