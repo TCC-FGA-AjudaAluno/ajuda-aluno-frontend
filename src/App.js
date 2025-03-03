@@ -1,10 +1,13 @@
 import React from "react";
 import './App.css'
 import AppRoutes from "./routes";
+import { AchievementProvider } from "./context/AchievementContext";
 
 function App() {
   return (
-    <AppRoutes />
+    <AchievementProvider>
+      <AppRoutes />
+    </AchievementProvider>
   )
 }
 

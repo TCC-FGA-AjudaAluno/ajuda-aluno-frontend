@@ -1,15 +1,15 @@
-import { Link } from 'react-router-dom'
-import styles from './Dashboard.module.css'
-import Footer from "../../components/Footer"
-import Topbar from '../global/Topbar/Topbar'
-import Stats from '../../components/Stats'
-import News from '../../components/News'
-import Card from '../../components/Card'
+import { Link } from 'react-router-dom';
+import styles from './Dashboard.module.css';
+import Footer from "../../components/Footer";
+import Topbar from '../global/Topbar/Topbar';
+import Stats from '../../components/Stats';
+import News from '../../components/News';
+import Card from '../../components/Card';
 import { fetchFgaNews } from "../../helper/scraper.js";
-import React from 'react'
-import { getUser } from "../../helper/helper"
-import TaskList from '../../components/TaskList/index.jsx'
-import PopChat from '../../components/Chat/index.jsx'
+import React from 'react';
+import { getUser } from "../../helper/helper";
+import TaskList from '../../components/TaskList/index.jsx';
+import PopChat from '../../components/Chat/index.jsx';
 
 function Dashboard() {
    const [user, setUser] = React.useState({});
