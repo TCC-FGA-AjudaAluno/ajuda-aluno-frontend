@@ -503,3 +503,20 @@ export async function downvoteComment(commentId) {
         throw error;
     }
 }
+
+/* list all achievements */
+export async function getAchievements() {  
+    try {
+        const { data } = await axios.get("/achievements", 
+        { 
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+
+        return { data };
+    } catch (error) {
+        console.error("Error fetching achievements:", error);
+        throw error;
+    }
+}

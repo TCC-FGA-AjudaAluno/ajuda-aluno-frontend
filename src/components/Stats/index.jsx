@@ -1,6 +1,8 @@
 import React from 'react';
 import BarChart from '../BarChart';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
+import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
+import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined';
 import { getUser } from '../../helper/helper';
 import { fetchSemesterDuration } from "../../helper/scraper.js";
 import Odometer from "react-odometerjs";
@@ -49,8 +51,12 @@ function Stats(props) {
                <br/> 
                Fim do semestre
             </span>
-            <span style={{marginLeft: "50px"}}>Pontos:</span>
+            <StarOutlineOutlinedIcon style={{width: "38px", height: "35px", marginRight: "9px",  marginLeft: "15px"}}/>
+            <span>Pontos:</span>
             <span style={{marginLeft: "10px"}}>{props.user ? <Odometer value={props.user.points} /> : ""}</span>
+            <EmojiEventsOutlinedIcon style={{width: "38px", height: "35px", marginRight: "9px", marginLeft: "15px"}}/>
+            <span >Conquistas:</span>
+            <span style={{marginLeft: "10px"}}>{props.user ? <Odometer value={1} /> : ""}</span>
          </div>
       </div>
    )

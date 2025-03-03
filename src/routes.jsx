@@ -9,6 +9,7 @@ import Subjects from "./pages/ListSubjects"
 import Leaderboards from "./pages/Leaderboards"
 import Page404 from "./pages/Page404"
 import PostPage from "./pages/PostPage"
+import Achievements from "./pages/Achievements"
 
 /** auth middleware */
 import { AuthorizeUser, ProtectRoute } from './middleware/auth.js'
@@ -27,6 +28,7 @@ function AppRoutes() {
             <Route path="/subjects" element={ <AuthorizeUser> <Subjects /> </AuthorizeUser>}></Route>
             <Route path="*" element={ <Page404 />}></Route>
             <Route path="/leaderboards" element={ <Leaderboards/> }></Route>
+            <Route path="/achievements" element={ <Achievements/> }></Route>
          </Routes>
       </BrowserRouter>
    )

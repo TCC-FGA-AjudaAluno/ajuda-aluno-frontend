@@ -76,6 +76,7 @@ function Topbar() {
                <Link to="/home" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Home</Link>
                <Link to="/subjects" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Materias</Link>
                <Link to="/leaderboards" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Placar de pontuação</Link>
+               <Link to="/achievements" style={{marginRight: "30px", textDecoration: "none", color:"#000000", fontSize: "12px"}}>Conquistas</Link>
             </nav>
             <Box 
                ref={newRef}
