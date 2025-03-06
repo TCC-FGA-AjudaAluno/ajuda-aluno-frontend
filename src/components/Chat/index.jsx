@@ -78,6 +78,11 @@
               type="text"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleSendMessage();
+                }
+              }}
               placeholder="Digite sua mensagem..."
             />
             <button onClick={handleSendMessage}>Enviar</button>

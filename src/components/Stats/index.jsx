@@ -9,7 +9,6 @@ import Odometer from "react-odometerjs";
 import "odometer/themes/odometer-theme-default.css";
 
 function Stats(props) {
-
    const [semesterDays, setSemesterDays] = React.useState(0);
 
    const fetchSemesterLenght = async () => {
@@ -56,7 +55,7 @@ function Stats(props) {
             <span style={{marginLeft: "10px"}}>{props.user ? <Odometer value={props.user.points} /> : ""}</span>
             <EmojiEventsOutlinedIcon style={{width: "38px", height: "35px", marginRight: "9px", marginLeft: "15px"}}/>
             <span >Conquistas:</span>
-            <span style={{marginLeft: "10px"}}>{props.user ? <Odometer value={1} /> : ""}</span>
+            <span style={{marginLeft: "10px"}}>{props.user.achievements ? <Odometer value={props.user.achievements?.length} /> : ""}</span>
          </div>
       </div>
    )
