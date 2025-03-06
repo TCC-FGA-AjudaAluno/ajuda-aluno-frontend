@@ -9,7 +9,6 @@ import Odometer from "react-odometerjs";
 import "odometer/themes/odometer-theme-default.css";
 
 function Stats(props) {
-   console.log('props:', props.user);
    const [semesterDays, setSemesterDays] = React.useState(0);
 
    const fetchSemesterLenght = async () => {
