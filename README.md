@@ -34,41 +34,37 @@ O **AjudaAluno Frontend** é a interface web do projeto AjudaAluno, desenvolvido
 
 ## Layout
 
+![Tela Inicial](https://i.imgur.com/TGKsqn1.gif)
+
+> *Nota: Tela inicial e cadastro de novo usuário.*
+
 ![Tela Inicial](https://i.imgur.com/9bp2DGn.gif)
 
-> *Nota: Insira capturas de tela reais do projeto para ilustrar o layout e as funcionalidades.*
-
-
+> *Agendar eventos como monitorias ou plantões de dúvidas de provas ou trabalhos selecionando uma data e horário de inicio dos eventos.*
 
 ![Tela Inicial](https://i.imgur.com/EFNz5jw.gif)
 
-> *Nota: Insira capturas de tela reais do projeto para ilustrar o layout e as funcionalidades.*
+> *Upload de arquivos de matérias.*
 
-![Tela Inicial](https://i.imgur.com/Fv08XSI.gif)
+![Tela Inicial](https://i.imgur.com/TIz9KNH.gif)
 
-> *Nota: Insira capturas de tela reais do projeto para ilustrar o layout e as funcionalidades.*
+> *Nota: Inscrever-se em matéria.*
+
+<!--![Tela Inicial](https://i.imgur.com/Fv08XSI.gif)!-->
 
 ![Tela Inicial](https://i.imgur.com/hQodVS2.gif)
 
-> *Nota: Insira capturas de tela reais do projeto para ilustrar o layout e as funcionalidades.*
 
 ![Tela Inicial](https://i.imgur.com/vv4aPLP.gif)
 
-> *Nota: Insira capturas de tela reais do projeto para ilustrar o layout e as funcionalidades.*
+> *Nota: Criação de postagem em matéria.*
 
+<!--
 ![Tela Inicial](https://i.imgur.com/V93YGSY.gif)
 
 > *Nota: Insira capturas de tela reais do projeto para ilustrar o layout e as funcionalidades.*
 
 ![Tela Inicial](https://i.imgur.com/uRGzfQL.gif)
-
-> *Nota: Insira capturas de tela reais do projeto para ilustrar o layout e as funcionalidades.*
-
-![Tela Inicial](https://i.imgur.com/TIz9KNH.gif)
-
-> *Nota: Insira capturas de tela reais do projeto para ilustrar o layout e as funcionalidades.*
-
-![Tela Inicial](https://i.imgur.com/TGKsqn1.gif)
 
 > *Nota: Insira capturas de tela reais do projeto para ilustrar o layout e as funcionalidades.*
 
@@ -84,10 +80,7 @@ O **AjudaAluno Frontend** é a interface web do projeto AjudaAluno, desenvolvido
 
 > *Nota: Insira capturas de tela reais do projeto para ilustrar o layout e as funcionalidades.*
 
-![Tela Inicial](https://i.imgur.com/Im4r2oT.gif)
-
-> *Nota: Insira capturas de tela reais do projeto para ilustrar o layout e as funcionalidades.*
-
+!-->
 
 
 ## Pré-requisitos
