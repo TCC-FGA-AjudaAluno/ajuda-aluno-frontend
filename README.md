@@ -20,7 +20,7 @@ Segue um exemplo de README para o repositório [TCC-FGA-AjudaAluno/ajuda-aluno-f
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Contribuição](#contribuição)
 - [Licença](#licença)
-- [Contato](#contato)
+
 
 ## Sobre o Projeto
 
@@ -192,9 +192,5 @@ Contribuições são bem-vindas! Se você deseja contribuir com este projeto, si
 
 Este projeto está licenciado sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais informações.
 
-## Contato
 
-Equipe AjudaAluno - [email@example.com](mailto:email@example.com)
-
----
 
