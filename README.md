@@ -1,7 +1,5 @@
 # Trabalho de conclusão de curso - AjudaAluno
-Segue um exemplo de README para o repositório [TCC-FGA-AjudaAluno/ajuda-aluno-frontend](https://github.com/TCC-FGA-AjudaAluno/ajuda-aluno-frontend):
 
----
 
 # AjudaAluno Frontend
 
